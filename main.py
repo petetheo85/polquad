@@ -66,8 +66,8 @@ def main():
             "index": index,
             "original_statement": original_statement,
             "true_label": row['quadrant'],
-            "initial_bias_coords": None,
-            "initial_bias_magnitude": None,
+            "initial_bias_coords": initial_bias_coords,
+            "initial_bias_magnitude": initial_bias_mag,
             "framework_comparison": {}
         }
 
