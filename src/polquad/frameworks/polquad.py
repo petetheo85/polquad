@@ -29,9 +29,8 @@ class PolquadFramework(BaseFramework):
 
     def _get_specific_framework_data(self, statement):
         """Generates and returns a dictionary of opinions from Opinion agents"""
-        print(f"Generating Opinions...", end="", flush=True)
         opinions = {}
-        for name, agent in self.agents.items():
+        for _, agent in self.agents.items():
             opinion_text = agent.provide_opinion(statement)
             bias, mag = self.bias_calculator.calculate_bias(opinion_text)
             opinions[agent.quadrant] = {
@@ -39,6 +38,5 @@ class PolquadFramework(BaseFramework):
                 "bias": bias,
                 "magnitude": mag
             }
-        print("DONE.")
         
         return {"opinions": opinions}

@@ -14,14 +14,15 @@ class NaiveFramework(BaseFramework):
     def run_analysis(self, index, row, initial_bias_coords, initial_bias_mag):
         """Overrides iterative method from parent"""
         statement = row['text']
-        print(f"\n=== Testing Statement #{index+1}: '{statement} ===")
+        
 
         # Make only one attempt to neutralize
         moderated_statement = self.naive_agent.neutralize(statement)
         moderated_bias, moderated_mag = self.bias_calculator.calculate_bias(moderated_statement)
-        print(f"Moderated Statement: '{moderated_statement}'")
-        print(f"Moderated Bias Coordinates: ({moderated_bias['x']}, {moderated_bias['y']})")
-        print(f"Moderated Magnitude: {moderated_mag}")
+        if self.verbose:
+            print(f"  Moderated Statement: '{moderated_statement}'")
+            print(f"  Moderated Bias Coordinates: ({moderated_bias['x']}, {moderated_bias['y']})")
+            print(f"  Moderated Magnitude: {moderated_mag:.2f}")
 
         converged = moderated_mag <= self.bias_threshold
 

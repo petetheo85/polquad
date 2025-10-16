@@ -1,12 +1,20 @@
 import json
 import statistics
 from config import polquad_configs
+from polquad.utils.formatter import (
+    print_main_header,
+    print_statement_header,
+    print_framework_header,
+    print_error,
+    print_summary
+)
 from polquad.utils.gemini import GeminiClient
 from polquad.utils.bias_calculator import BiasCalculator
 from polquad.utils.data_helper import create_dataframe
 from polquad.frameworks.naive import NaiveFramework
 from polquad.frameworks.polquad import PolquadFramework
 from polquad.frameworks.unified import UnifiedPolquadFramework
+
 
 
 # Configuration
@@ -18,6 +26,7 @@ NUMBER_OF_RUNS = polquad_configs['num_runs']
 OUTPUT_FILE_PATH = polquad_configs['output_file_path']
 
 def main():
+    print_main_header("POLQUAD ANALYSIS")
     # Get dataset
     print("\nGenerating Dataframe from Dataset...", end="", flush=True)
     df = create_dataframe(DATASET_PATH, SAMPLE_SIZE, RANDOM_SEED, True)
@@ -45,9 +54,8 @@ def main():
 
     # Main Loop that iterates through each statement
     for index, row in df.iterrows():
-        print(f"\n{'='*20} Processing Statement #{index+1} {'='*20}")
         original_statement = row['text']
-        print(f"Statement: '{original_statement}")
+        print_statement_header(index, original_statement)
 
         # Calculate inital bias
         initial_bias_coords, initial_bias_mag = bias_calculator.calculate_bias(original_statement)   
@@ -80,7 +88,7 @@ def main():
 
         # Framework Loop - runs all frameworks on each statement
         for name, runner in frameworks.items():
-            print(f"\n--- Running Framework: {name.upper().replace("_", " ")} for {NUMBER_OF_RUNS} trials ---")
+            print_framework_header(name, NUMBER_OF_RUNS)
 
             run_data = []
             metrics_to_average = {
@@ -118,9 +126,10 @@ def main():
                     metrics_to_average['final_magnitude'].append(final_mag)
                     metrics_to_average['iterations'].append(num_iters)
                     metrics_to_average['bias_reduction'].append(bias_reduction)
+                    print(f"  • Run {i+1}/{NUMBER_OF_RUNS}: Bias Reduction = {bias_reduction:.2f}%, Iterations = {num_iters}")
 
                 except Exception as e:
-                    print(f"ERROR on run {i+1} for statement {index}: {e}")
+                    print_error(i + 1, index, e)
                     run_data.append({
                         "run_id": i + 1,
                         "status": "FAILED",
@@ -133,6 +142,7 @@ def main():
                 "avg_iterations": statistics.mean(metrics_to_average['iterations']) if metrics_to_average['iterations'] else 0,
                 "avg_bias_reduction": statistics.mean(metrics_to_average['bias_reduction']) if metrics_to_average['bias_reduction'] else 0
             }
+            print_summary(name, averages)
 
             statement_results["framework_comparison"][name] = {
                 "runs": run_data,
@@ -147,6 +157,8 @@ def main():
     with open(OUTPUT_FILE_PATH, 'w') as f:
         json.dump(all_results, f, indent = 2)
     print("DONE.")
+
+    print_main_header("ANALYSIS COMPLETE")
 
 if __name__ == "__main__":
     main()
