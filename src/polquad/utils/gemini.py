@@ -3,6 +3,7 @@ import json
 from google import genai
 from google.genai import types
 from typing import Optional, Dict
+from .retry_handler import retry_with_backoff
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
@@ -17,12 +18,12 @@ class GeminiClient:
     """Wrapper class for interacting with the Gemini API."""
 
     def __init__(self, api_key: str = GOOGLE_API_KEY, model: str = GEMINI_MODEL):
-
         self.api_key = api_key
         self.client = genai.Client(api_key=self.api_key)
         self.model = model
 
     # API call to generate text (OpinionAgent, JudgeAgentF, UnifiedAgent)
+    @retry_with_backoff(retries=3, base_delay=5)
     def generate_text(
             self,
             prompt: str,
@@ -56,7 +57,7 @@ class GeminiClient:
             traceback.print_exc()
             print(f"\n[GeminiClient] --- CRITICAL API ERROR ---")
             print(f"The actual underlying exception was: {e}")
-            return f"[Error] API Call Failed: {e}"
+            raise
         
     def generate_json(
             self,
