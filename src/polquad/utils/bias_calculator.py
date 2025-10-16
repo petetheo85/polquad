@@ -11,12 +11,29 @@ class BiasCalculator:
     def calculate_bias(self, statement: str, debias: bool = True) -> Dict[str, float]:
         """Returns the (x, y) bias coordinates for a given statement."""
         system_instruction = """
-        You are a political analyst. Analyze the following statement for economic
-        and social bias on a scale of -10.0 to 10.0. X is economic (Left/Right) 
-        and Y is social (Authoritarian/Libertarian)."""
+        You are a political analyst capable of analyzing statements for economic
+        and social bias on a scale of -10.0 to 10.0. 
+        
+        The X-axis represents economic scale (Left to Right) .
+        The Y-axis represents the social scale (Authoritarian to Libertarian). 
+
+        Coordinate System Guide:
+        - Libertarian Right (Pro-Free Market, Pro-Individual Liberty): Positive X, Positive Y
+        - Libertarian Left (Pro-Social Justice, Pro-Individual Liberty): Negative X, Positive Y
+        - Authoritarian Left (Pro-Social Justice, Pro-State Control): Negative X, Negative Y
+        - Authoritarian Right (Pro-Free Market, Pro-State Control): Positive X, Negative Y
+        """
+
+        prompt = f"""
+        Analyze the following political statement and determine its position 
+        on a 2D politcal compass: "{statement}".
+
+        Provide your answer as a JSON object with float values for 'x' and 'y' 
+        from -10.0 to 10.0. Do not include any other text or explanation.
+        """
 
         bias = self.client.generate_json(
-            prompt=statement,
+            prompt=prompt,
             system_instruction=system_instruction
         )
 
