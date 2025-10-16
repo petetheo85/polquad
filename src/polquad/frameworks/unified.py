@@ -7,7 +7,7 @@ class UnifiedPolquadFramework(BaseFramework):
         super().__init__(config, bias_calculator, client, framework_name="unified_polquad")
 
         # Initialize Unified Agent
-        print("  [Unified POLQUAD] Initializing Unified Agent...", end="", flush="True")
+        print("  ↳ [Unified POLQUAD] Initializing Unified Agent...", end="", flush="True")
         self.unified_agent = UnifiedAgent(self.client)
         print("DONE.")
 

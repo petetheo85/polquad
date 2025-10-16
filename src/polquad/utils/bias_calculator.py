@@ -35,8 +35,8 @@ class BiasCalculator:
         neutral_statement = "The sky is blue and grass is green."
         bias, mag = self.calculate_bias(neutral_statement, debias = False)
         self.baseline_bias = bias
-        print(f"  [Bias Calculator] Baseline Bias Coordinates: ({bias['x']}, {bias['y']})")
-        print(f"  [Bias Calculator] Bias Magnitude: {mag}")
+        print(f"  ↳ [Bias Calculator] Baseline Bias Coordinates: ({bias['x']}, {bias['y']})")
+        print(f"  ↳ [Bias Calculator] Baseline Bias Magnitude: {mag}")
         return bias
 
 

@@ -126,7 +126,7 @@ def main():
                     metrics_to_average['final_magnitude'].append(final_mag)
                     metrics_to_average['iterations'].append(num_iters)
                     metrics_to_average['bias_reduction'].append(bias_reduction)
-                    print(f"  • Run {i+1}/{NUMBER_OF_RUNS}: Bias Reduction = {bias_reduction:.2f}%, Iterations = {num_iters}")
+                    print(f"  • Run {i+1}/{NUMBER_OF_RUNS}: Final Bias Magnitude = {final_mag:.2f}, Bias Reduction = {bias_reduction:.2f}%, Iterations = {num_iters}")
 
                 except Exception as e:
                     print_error(i + 1, index, e)

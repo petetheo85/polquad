@@ -9,7 +9,7 @@ class PolquadFramework(BaseFramework):
         super().__init__(config, bias_calculator, client, framework_name="full_polquad")
 
         # Initialize agents
-        print("  [Full POLQUAD] Initializing Opinion Agents...", end="", flush=True)
+        print("  ↳ [Full POLQUAD] Initializing Opinion Agents...", end="", flush=True)
         self.agents = {
             'lib_left': OpinionAgent(self.client, 'lib_left'),
             'lib_right': OpinionAgent(self.client, 'lib_right'),
@@ -18,7 +18,7 @@ class PolquadFramework(BaseFramework):
         }
         print("DONE.")
 
-        print("  [Full POLQUAD] Initializing Judge Agent...", end="", flush="True")
+        print("  ↳ [Full POLQUAD] Initializing Judge Agent...", end="", flush="True")
         self.judge = JudgeAgent(self.client)
         print("DONE.")
 
