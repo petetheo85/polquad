@@ -10,7 +10,7 @@ __pycache__/
 *.pyd
 
 # Python packaging build artifacts
-.egg-info/
+*.egg-info/
 
 # Editor and IDE configuration files
 .vscode/
