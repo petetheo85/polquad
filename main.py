@@ -1,0 +1,152 @@
+import json
+import statistics
+from config import polquad_configs
+from polquad.utils.gemini import GeminiClient
+from polquad.utils.bias_calculator import BiasCalculator
+from polquad.utils.data_helper import create_dataframe
+from polquad.frameworks.naive import NaiveFramework
+from polquad.frameworks.polquad import PolquadFramework
+from polquad.frameworks.unified import UnifiedPolquadFramework
+
+
+# Configuration
+SAMPLE_SIZE = polquad_configs['sample_size']
+RANDOM_SEED = polquad_configs['random_seed']
+DATASET_PATH = polquad_configs['dataset_path']
+BIAS_THRESHOLD = polquad_configs['bias_threshold']
+NUMBER_OF_RUNS = polquad_configs['num_runs']
+OUTPUT_FILE_PATH = polquad_configs['output_file_path']
+
+def main():
+    # Get dataset
+    print("\nGenerating Dataframe from Dataset...", end="", flush=True)
+    df = create_dataframe(DATASET_PATH, SAMPLE_SIZE, RANDOM_SEED, True)
+    print("DONE.")
+
+    # Initialize LLM
+    print("Initializing LLM Client...", end="", flush=True)
+    client = GeminiClient()
+    print("DONE.")
+
+    # Initialize bias calcualtor
+    print("Intializing Bias Calculator...")
+    bias_calculator = BiasCalculator(client)
+
+    # Instantiate framework runners
+    print("Initializing frameworks...")
+    frameworks = {
+        "full_polquad": PolquadFramework(config=polquad_configs, client=client, bias_calculator=bias_calculator),
+        "unified_polquad": UnifiedPolquadFramework(config=polquad_configs, client=client, bias_calculator=bias_calculator),
+        "naive": NaiveFramework(config=polquad_configs, client=client, bias_calculator=bias_calculator)
+    }
+    print("Setup complete!")
+
+    all_results = []
+
+    # Main Loop that iterates through each statement
+    for index, row in df.iterrows():
+        print(f"\n{'='*20} Processing Statement #{index+1} {'='*20}")
+        original_statement = row['text']
+        print(f"Statement: '{original_statement}")
+
+        # Calculate inital bias
+        initial_bias_coords, initial_bias_mag = bias_calculator.calculate_bias(original_statement)   
+        print(f"Initial Bias Coordinates: ({initial_bias_coords['x']}, {initial_bias_coords['y']})") 
+        print(f"Initial Bias Magnitude: {initial_bias_mag}")
+
+        statement_results = {
+            "index": index,
+            "original_statement": original_statement,
+            "true_label": row['quadrant'],
+            "initial_bias_coords": None,
+            "initial_bias_magnitude": None,
+            "framework_comparison": {}
+        }
+
+        # Check if statement is unbiased
+        if initial_bias_mag <= BIAS_THRESHOLD:
+            print(f"--> Initial bias is below threshold. Skipping framework runs.")
+            for name in frameworks.keys():
+                statement_results['framework_comparison'][name] = {
+                    'runs': [{'run_id': i + 1, 'status': "SKIPPED"} for i in range(NUMBER_OF_RUNS)],
+                    'averages': {
+                        'avg_final_magnitude': initial_bias_mag,
+                        'avg_iterations': 0,
+                        'avg_bias_reduction': 0.0
+                    }
+                }
+            all_results.append(statement_results)
+            continue
+
+        # Framework Loop - runs all frameworks on each statement
+        for name, runner in frameworks.items():
+            print(f"\n--- Running Framework: {name.upper().replace("_", " ")} for {NUMBER_OF_RUNS} trials ---")
+
+            run_data = []
+            metrics_to_average = {
+                "final_magnitude": [],
+                "iterations": [],
+                "bias_reduction": []
+            }
+
+            # Trial Loop - runs each framework multiple times for smoothing
+            for i in range(NUMBER_OF_RUNS):
+                try:
+                    result = runner.run_analysis(index, row, initial_bias_coords, initial_bias_mag)
+
+                    # Extract initial bias info on first run
+                    if i == 0 and name == "full_polquad":
+                        statement_results["initial_bias_coords"] = result.get("initial_bias_coords")
+                        statement_results["initial_bias_magnitude"] = result.get("initial_bias_magnitude")
+
+                    # Extract relevant metrics
+                    fw_result = result.get("frameworks", {}).get(name, {})
+                    final_mag = fw_result.get("final_bias_magnitude", 0)
+                    num_iters = fw_result.get("num_iterations", 0)
+                    bias_reduction = fw_result.get("bias_reduction", 0)
+                    converged = fw_result.get("converged", False)
+
+                    run_data.append({
+                        "run_id": i + 1,
+                        "final_bias_magnitude": final_mag,
+                        "num_iterations": num_iters,
+                        "bias_reduction": bias_reduction,
+                        "converged": converged
+                    })
+
+                    # Metrics to be averaged
+                    metrics_to_average['final_magnitude'].append(final_mag)
+                    metrics_to_average['iterations'].append(num_iters)
+                    metrics_to_average['bias_reduction'].append(bias_reduction)
+
+                except Exception as e:
+                    print(f"ERROR on run {i+1} for statement {index}: {e}")
+                    run_data.append({
+                        "run_id": i + 1,
+                        "status": "FAILED",
+                        "error": str(e),
+                    })
+
+            # Calculate averages
+            averages = {
+                "avg_final_magnitude": statistics.mean(metrics_to_average['final_magnitude']) if metrics_to_average['final_magnitude'] else 0,
+                "avg_iterations": statistics.mean(metrics_to_average['iterations']) if metrics_to_average['iterations'] else 0,
+                "avg_bias_reduction": statistics.mean(metrics_to_average['bias_reduction']) if metrics_to_average['bias_reduction'] else 0
+            }
+
+            statement_results["framework_comparison"][name] = {
+                "runs": run_data,
+                "averages": averages
+            }
+
+        all_results.append(statement_results)
+
+    # Output to JSON
+    print(f"\n{'='*20} Analysis Complete {'='*20}")
+    print(f"Saving all results to {OUTPUT_FILE_PATH}...", end="", flush=True)
+    with open(OUTPUT_FILE_PATH, 'w') as f:
+        json.dump(all_results, f, indent = 2)
+    print("DONE.")
+
+if __name__ == "__main__":
+    main()

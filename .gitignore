@@ -1,0 +1,26 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python packaging build artifacts
+.egg-info/
+
+# Editor and IDE configuration files
+.vscode/
+.idea/
+
+# macOS specific files
+.DS_Store
+
+# IPython/Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pytest cache
+.pytest_cache/
