@@ -1,11 +1,13 @@
 from math import sqrt
 from typing import Dict
+import statistics
 
 
 class BiasCalculator:
 
-    def __init__(self, client):
+    def __init__(self, client, config: Dict):
         self.client = client
+        self.num_runs = config.get('bias_calc_runs', 3)
         self.baseline_bias = self.calibrate()
 
     def calculate_bias(self, statement: str, debias: bool = True) -> Dict[str, float]:
@@ -32,20 +34,31 @@ class BiasCalculator:
         from -10.0 to 10.0. Do not include any other text or explanation.
         """
 
-        bias = self.client.generate_json(
-            prompt=prompt,
-            system_instruction=system_instruction
-        )
+        x_coords, y_coords = [], []
 
-        if debias: 
-            bias["x"] -= self.baseline_bias["x"]
-            bias["y"] -= self.baseline_bias["y"]
+        for _ in range(self.num_runs):
+            bias_coords = self.client.generate_json(
+                prompt=prompt,
+                system_instruction=system_instruction
+            )
 
-        x = bias["x"]
-        y = bias["y"]
-        magnitude = sqrt(x ** 2 + y ** 2)
+            if debias: 
+                bias_coords["x"] -= self.baseline_bias["x"]
+                bias_coords["y"] -= self.baseline_bias["y"]
 
-        return bias, magnitude
+            x = bias_coords["x"]
+            y = bias_coords["y"]
+
+            x_coords.append(bias_coords['x'])
+            y_coords.append(bias_coords['y'])
+
+        avg_x = statistics.mean(x_coords)
+        avg_y = statistics.mean(y_coords)
+        avg_coords = {'x': avg_x, 'y': avg_y}
+
+        magnitude = sqrt(avg_x ** 2 + avg_y ** 2)
+
+        return avg_coords, magnitude
 
     def calibrate(self):
         """Determines the LLM's own bias baseline using a neutral statment."""
@@ -59,9 +72,15 @@ class BiasCalculator:
 
 # Test Bias Calculator 
 if __name__ == "__main__":
+    import sys
+    from pathlib import Path
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    sys.path.append(str(project_root))
     from polquad.utils.gemini import GeminiClient
+    from config import polquad_configs
+
     client = GeminiClient()
-    calculator = BiasCalculator(client)
+    calculator = BiasCalculator(client, polquad_configs)
 
     test_statements = (
         "We need a strong state to maintain moral order.",
@@ -73,5 +92,5 @@ if __name__ == "__main__":
     for statement in test_statements:
         bias, mag = calculator.calculate_bias(statement)
         print(f"\nStatement: {statement}")
-        print(f"Calculated bias result: {bias}")
-        print(f"Calculated mag result: {mag}")
+        print(f"Calculated Bias Coordinates: ({bias['x']}, {bias['y']})")
+        print(f"Calculated Bias Magnitude: {mag}")

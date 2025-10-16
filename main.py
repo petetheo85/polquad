@@ -39,7 +39,7 @@ def main():
 
     # Initialize bias calcualtor
     print("Intializing Bias Calculator...")
-    bias_calculator = BiasCalculator(client)
+    bias_calculator = BiasCalculator(client, polquad_configs)
 
     # Instantiate framework runners
     print("Initializing frameworks...")
