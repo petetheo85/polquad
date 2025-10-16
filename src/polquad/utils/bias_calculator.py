@@ -59,9 +59,19 @@ class BiasCalculator:
 
 # Test Bias Calculator 
 if __name__ == "__main__":
-    from .gemini import GeminiClient
+    from polquad.utils.gemini import GeminiClient
     client = GeminiClient()
     calculator = BiasCalculator(client)
-    bias, mag = calculator.calculate_bias("Tax cuts for corporations always help the economy.")
-    print(f"Adjusted bias result: {bias}")
-    print(f"Adjusted mag result: {mag}")
+
+    test_statements = (
+        "We need a strong state to maintain moral order.",
+        "Everyone should be free to marry whoever they want.",
+        "Corporations should be nationalized.",
+        "Taxes should be abolished entirely."
+    )
+
+    for statement in test_statements:
+        bias, mag = calculator.calculate_bias(statement)
+        print(f"\nStatement: {statement}")
+        print(f"Calculated bias result: {bias}")
+        print(f"Calculated mag result: {mag}")
