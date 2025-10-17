@@ -60,14 +60,18 @@ class JudgeAgent:
             ## TASK
             Your task is to rewrite your PREVIOUS synthesis to make it more neutral.
             Your goal is to create a new statement whose coordinates are closer 
-            to the neutral origin (0,0).
+            to the neutral origin (0,0). Note the bias of the original statement
+            as well as the bias of your previous attempts to continue refining.
 
             ## RULES
             - Do not change the core meaning or topic of the statement.
             - Keep your rewriten statement a similar length to the original.
-            - Your new attempt must be substantially different than others in
+            - Your new attempt MUST be substantially different than others in
             the history below. DO NOT just swap synonyms.
             - Provide only the rewritten neutral statment with no commentary or explanation.
+
+            ## HISTORY
+            {history}
             """
         
         try:

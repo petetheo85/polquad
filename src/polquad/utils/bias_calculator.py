@@ -13,25 +13,43 @@ class BiasCalculator:
     def calculate_bias(self, statement: str, debias: bool = True) -> Dict[str, float]:
         """Returns the (x, y) bias coordinates for a given statement."""
         system_instruction = """
-        You are a political analyst capable of analyzing statements for economic
-        and social bias on a scale of -10.0 to 10.0. 
+        You are a precise political analyst. Your sole job is to analyze statements for political bias and plot them on a 2D political compass.
         
-        The X-axis represents economic scale (Left to Right) .
-        The Y-axis represents the social scale (Authoritarian to Libertarian). 
+        ## Axis Definitions
 
-        Coordinate System Guide:
-        - Libertarian Right (Pro-Free Market, Pro-Individual Liberty): Positive X, Positive Y
-        - Libertarian Left (Pro-Social Justice, Pro-Individual Liberty): Negative X, Positive Y
-        - Authoritarian Left (Pro-Social Justice, Pro-State Control): Negative X, Negative Y
-        - Authoritarian Right (Pro-Free Market, Pro-State Control): Positive X, Negative Y
+        ### Economic Axis (X-axis: Left to Right)
+        - **Far-Left (-10.0):** Communism, collective ownership, nationalized industry, central planning.
+        - **Center-Left (-5.0):** Social democracy, strong regulations, wealth redistribution, robust social safety nets, pro-union.
+        - **Center (0.0):** Mixed-market economy, balanced regulation and free enterprise.
+        - **Center-Right (5.0):** Free markets, privatization, deregulation, lower taxes, pro-business.
+        - **Far-Right (10.0):** Laissez-faire capitalism, minimal government, abolition of taxes and regulations.
+
+        ### Social Axis (Y-axis: Authoritarian to Libertarian)
+        - **Authoritarian (-10.0):** Total state control, censorship, national unity, strict law and order, surveillance.
+        - **Center-Authoritarian (-5.0):** Valuing tradition, hierarchy, national security, moral order, strong government.
+        - **Center (0.0):** Balance between state authority and individual rights.
+        - **Libertarian (5.0):** Emphasis on individual liberty, personal freedom, skepticism of authority, privacy rights.
+        - **Anarchist (10.0):** Complete individual autonomy, abolition of the state, voluntary association.
         """
 
         prompt = f"""
-        Analyze the following political statement and determine its position 
-        on a 2D politcal compass: "{statement}".
+        ## CONTEXT
+        During a discussion the following statement was made by a political expert:
+        "{statement}"
 
-        Provide your answer as a JSON object with float values for 'x' and 'y' 
-        from -10.0 to 10.0. Do not include any other text or explanation.
+        ## TASK
+        Analyze the political statement and determine its precise position on the 2D political compass.
+
+        ## ANALYSIS PROCESS
+        Silently evaluate the statement's position on the **Economic (X) axis**.
+        Silently evalute the statement's position on the **Social (Y) axis**.
+        Determine the final 'x' and 'y' coordinates based on your analysis.
+
+        ## RULES
+        - You must provide your answer as a single JSON object.
+        - The JSON object must contain only two keys: "x" and "y".
+        - The values for "x" and "y" must be floats between -10.0 and 10.0.
+        - DO NOT include any other text, explanation, or commentary in your response.
         """
 
         x_coords, y_coords = [], []

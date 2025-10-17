@@ -13,10 +13,7 @@ class BaseFramework:
         """Orchestrates the analysis for a single statement."""
         # Load data
         statement = row['text']
-        true_label = row['quadrant']     
-
         specific_data = self._get_specific_framework_data(statement)
-
         statement_history = self._run_moderation_loop(statement, initial_bias_coords, initial_bias_mag, specific_data)
 
         return self._build_result_dict(index, row, initial_bias_coords, initial_bias_mag, statement_history, specific_data)
@@ -82,7 +79,7 @@ class BaseFramework:
         return {
             "index": index,
             "original_statement": row['text'],
-            "true_label": row['quadrant'],
+            "true_label": row['quadrant'] if 'quadrant' in row else None,
             "initial_bias_coords": original_bias,
             "initial_bias_magnitude": original_mag,
             "frameworks": {

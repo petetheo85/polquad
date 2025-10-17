@@ -20,8 +20,10 @@ from polquad.frameworks.unified import UnifiedPolquadFramework
 
 # Configuration
 SAMPLE_SIZE = polquad_configs['sample_size']
+BALANCED_SAMPLING = polquad_configs['balanced_sampling']
 RANDOM_SEED = polquad_configs['random_seed']
 DATASET_PATH = polquad_configs['dataset_path']
+DATASET_SOURCE_TYPE = polquad_configs['dataset_source_type']
 BIAS_THRESHOLD = polquad_configs['bias_threshold']
 NUMBER_OF_RUNS = polquad_configs['num_runs']
 OUTPUT_FILE_PATH = polquad_configs['output_file_path']
@@ -29,12 +31,15 @@ OUTPUT_FILE_PATH = polquad_configs['output_file_path']
 def main():
     print("\n\n\n")
     print_startup_screen()
-    print_main_header("POLQUAD ANALYSIS")
-    
+
     # Get dataset
-    print("\nGenerating Dataframe from Dataset...", end="", flush=True)
-    df = create_dataframe(DATASET_PATH, SAMPLE_SIZE, RANDOM_SEED, True)
-    print("DONE.")
+    print("\nGenerating Dataframe from Dataset...")
+    df = create_dataframe(
+        DATASET_PATH, 
+        SAMPLE_SIZE, 
+        RANDOM_SEED,
+        balanced=BALANCED_SAMPLING,
+        source=DATASET_SOURCE_TYPE)
 
     # Initialize LLM
     print("Initializing LLM Client...", end="", flush=True)
@@ -65,11 +70,11 @@ def main():
         initial_bias_coords, initial_bias_mag = bias_calculator.calculate_bias(original_statement)   
         print(f"Initial Bias Coordinates: ({initial_bias_coords['x']}, {initial_bias_coords['y']})") 
         print(f"Initial Bias Magnitude: {initial_bias_mag}")
-
+        
         statement_results = {
             "index": index,
             "original_statement": original_statement,
-            "true_label": row['quadrant'],
+            "true_label": row['quadrant'] if 'quadrant' in row else None,
             "initial_bias_coords": initial_bias_coords,
             "initial_bias_magnitude": initial_bias_mag,
             "framework_comparison": {}
