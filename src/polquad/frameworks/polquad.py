@@ -22,10 +22,10 @@ class PolquadFramework(BaseFramework):
         self.judge = JudgeAgent(self.client)
         print("DONE.")
 
-    def _get_moderated_statement(self, history, specific_data, is_first_run):
+    def _get_moderated_statement(self, history, bias_threshold, specific_data, is_first_run):
         """Generates and returns a moderated statement from the Judge agent"""
         opinions = specific_data.get("opinions", {})
-        return self.judge.neutralize_opinions(opinions, history, is_first_run)
+        return self.judge.neutralize_opinions(opinions, history, bias_threshold, is_first_run)
 
     def _get_specific_framework_data(self, statement):
         """Generates and returns a dictionary of opinions from Opinion agents"""

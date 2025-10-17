@@ -11,6 +11,6 @@ class UnifiedPolquadFramework(BaseFramework):
         self.unified_agent = UnifiedAgent(self.client)
         print("DONE.")
 
-    def _get_moderated_statement(self, history, specific_data, is_first_run):
+    def _get_moderated_statement(self, history, bias_mag, specific_data, is_first_run):
         """Implements the moderation logic for the Unified Agent"""
-        return self.unified_agent.neutralize(history, is_first_run)
+        return self.unified_agent.neutralize(history, bias_mag, is_first_run)

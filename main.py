@@ -2,6 +2,7 @@ import json
 import statistics
 from config import polquad_configs
 from polquad.utils.formatter import (
+    print_startup_screen,
     print_main_header,
     print_statement_header,
     print_framework_header,
@@ -26,7 +27,10 @@ NUMBER_OF_RUNS = polquad_configs['num_runs']
 OUTPUT_FILE_PATH = polquad_configs['output_file_path']
 
 def main():
+    print("\n\n\n")
+    print_startup_screen()
     print_main_header("POLQUAD ANALYSIS")
+    
     # Get dataset
     print("\nGenerating Dataframe from Dataset...", end="", flush=True)
     df = create_dataframe(DATASET_PATH, SAMPLE_SIZE, RANDOM_SEED, True)

@@ -6,31 +6,39 @@ class JudgeAgent:
     def __init__(self, client: "GeminiClient"):
         self.client = client
         self.system_instruction = """
-        You are a neutral AI judge with no political affiliation with expertise 
-        in political neutralization. You are capable of synthesizing multiple 
-        politicaly biased statements into one politically neutral statement.
+        You are an apolitical AI judge with expertise in political neutralization. 
+        Your sole purpose is to synthesize multiple biased statements from 
+        different political quadrants into a single, politically neutral statement.
         """
 
     def neutralize_opinions(
             self, 
             opinions: Dict[str, Dict[str, Any]],
             history: Dict[int, Dict[str, Any]],
+            bias_threshold: float,
             initial_call: bool = True
         ) -> str:
 
+        original_statement = history[0]["original_statement"]
+
         if initial_call:
-            statement = history[0]["original_statement"]
             prompt = f"""
-            Political experts have provide their opinion on the following statement:
-            \n"{statement}\n"
+            ## TASK
+            Your task is to synthesize the following expert opinions into a single,
+            politically neutral and unbiased statement. A neutral statement 
+            is one that would be located at the origin (0,0) of a political compass.
 
-            Your task is to review and synthesize the opinions of political experts 
-            with varied political affiliations and return a single, unbiased 
-            version of their statements. Keep your statement to a similar length 
-            as the original. Do not provide any commentary or reasoning. Just 
-            provide the neutral statement.
+            ## CONTEXT
+            The original statement being debated was: "{original_statement}
+            
+            ## RULES
+            - Your synthesis must be a single, cohesive statement.
+            - Do not change the core meaning or topic of the statement.
+            - Keep your rewriten statement a similar length to the original.
+            - Provide only the rewritten neutral statment with no commentary or explanation.
 
-            Opinions: {opinions}
+            ## EXPERT OPINIONS TO SYNTHESIZE
+            # {opinions}
             """
 
         else:
@@ -38,26 +46,28 @@ class JudgeAgent:
             last_attempt = history[last_iter_num]
             last_statement = last_attempt['moderated_statement']
             last_magnitude = last_attempt['magnitude']
-            original_statement = history[0]["original_statement"]
 
             prompt = f"""
-            The original statement was "{original_statement}."
-            Political experts provided these biased opinions: {opinions}
+            ## CONTEXT
+            The original statement was "{original_statement}"
+            Political experts provided these opinions: {opinions}
 
-            Your last attempt to neutralize this was "{last_statement}."
-            This attempt was measured and had a bias magnitude of {last_magnitude:.2f}
-            This is still above the required threshold.
+            ## PREVIOUS ATTEMPT (FAILED)
+            Your previous attempt to neutralize this was: "{last_statement}."
+            This attempt was measured and still had a bias magnitude of {last_magnitude:.2f}.
+            This is above the required success threshold of {bias_threshold}.
 
-            Your goal is to rewrite your PREVIOUS attempt to move its political
-            coordinates closer to the neutral origin (0, 0), further reducing 
-            its bias magnitude.
+            ## TASK
+            Your task is to rewrite your PREVIOUS synthesis to make it more neutral.
+            Your goal is to create a new statement whose coordinates are closer 
+            to the neutral origin (0,0).
 
-            Your new attempt must be substantially different than others in the 
-            history below. DO NOT just swap synonyms. Keep your statement to a 
-            similar length as the original. Do not provide any commentary or 
-            reasoning. Just provide the neutral statement.
-
-            Moderation History: {history}
+            ## RULES
+            - Do not change the core meaning or topic of the statement.
+            - Keep your rewriten statement a similar length to the original.
+            - Your new attempt must be substantially different than others in
+            the history below. DO NOT just swap synonyms.
+            - Provide only the rewritten neutral statment with no commentary or explanation.
             """
         
         try:

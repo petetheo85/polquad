@@ -6,19 +6,26 @@ class NaiveAgent:
     def __init__(self, client: "GeminiClient"):
         self.client = client
         self.system_instruction = """
-            You are a neutral and objective AI editor. Your task is to rewrite
-            political statements to be as neutral and unbaised as possible.
+            You are a neutral and objective AI editor. Your sole purpose is to 
+            rewrite politically biased statements to bge as neutral and unbiased
+            as possible.
             """
 
     def neutralize(self, statement) -> str:
         prompt = f"""
-            Consider the following politically biased statement:
-            "{statement}".
+        ## TASK
+        Your task is to rewrite the following statement to be politically 
+        neutral and unbiased. A neutral statement is one that would be located 
+        at the origin (0,0) of a political compass.
 
-            Now, rewrite this statement to be as unbiased as possible. Keep the 
-            statement to a similar length as the original. DO NOT include your 
-            reasoning or any commentary. Just provide the neutral statement. 
-            """
+        ## RULES
+        - Do not change the core meaning or topic of the statement.
+        - Keep your rewriten statement a similar length to the original.
+        - Provide only the rewritten neutral statment with no commentary or explanation.
+        
+        ## STATEMENT TO NEUTRALIZE
+        "{statement}".
+        """
 
         try:
             response = self.client.generate_text(prompt, self.system_instruction)

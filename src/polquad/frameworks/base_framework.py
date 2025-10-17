@@ -34,7 +34,7 @@ class BaseFramework:
                 print("  ↳ Generating Expert Opinions...")
 
 
-            moderated_statement = self._get_moderated_statement(history, specific_data, is_first_run=(current_iter == 0))
+            moderated_statement = self._get_moderated_statement(history, self.bias_threshold, specific_data, is_first_run=(current_iter == 0))
             moderated_bias, moderated_mag = self.bias_calculator.calculate_bias(moderated_statement)
 
             if self.verbose:

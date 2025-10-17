@@ -37,7 +37,9 @@ class OpinionAgent:
 
         prompt = f"""
         You are a political commentator. Your task is to reply to \"{statement}\" 
-        with an opinion that reflects your assigned political viewpoint. 
+        with an opinion that reflects your assigned political viewpoint. If the 
+        statement aligns with your political affiliation, you can bolster it. 
+        Otherwise, you should provide a counter argument from your perspective.
         Avoid exaggeration, misinformation, and factual inaccuracies. Keep your
         statement to a similar length. Do not provide any commentary or reasoning. 
         Just provide the revised statement.
