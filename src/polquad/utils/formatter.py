@@ -1,3 +1,5 @@
+from colorama import Fore, Style, init
+
 def print_main_header(text: str):
     """Prints a main header for the start/end of the script."""
     width = 80
@@ -36,3 +38,25 @@ def print_summary(framework_name: str, averages: dict):
     print(f"    - Average Bias Reduction: {averages['avg_bias_reduction']:.2f}%")
     print(f"    - Average Final Bias Magnitude: {averages['avg_final_magnitude']:.2f}")
     print(f"    - Average Iterations: {averages['avg_iterations']:.2f}")
+
+def print_startup_screen():
+    """Prints a ridiculously awesome ASCII art startup screen."""
+    logo = r"""
+     ███████████     ███████    █████          ██████    █████  █████   █████████   ██████████  
+    ▒▒███▒▒▒▒▒███  ███▒▒▒▒▒███ ▒▒███         ███▒▒▒▒███ ▒▒███  ▒▒███   ███▒▒▒▒▒███ ▒▒███▒▒▒▒███ 
+     ▒███    ▒███ ███     ▒▒███ ▒███        ███    ▒▒███ ▒███   ▒███  ▒███    ▒███  ▒███   ▒▒███
+     ▒██████████ ▒███      ▒███ ▒███       ▒███     ▒███ ▒███   ▒███  ▒███████████  ▒███    ▒███
+     ▒███▒▒▒▒▒▒  ▒███      ▒███ ▒███       ▒███   ██▒███ ▒███   ▒███  ▒███▒▒▒▒▒███  ▒███    ▒███
+     ▒███        ▒▒███     ███  ▒███      █▒▒███ ▒▒████  ▒███   ▒███  ▒███    ▒███  ▒███    ███ 
+     █████        ▒▒▒███████▒   ███████████ ▒▒▒██████▒██ ▒▒████████   █████   █████ ██████████  
+    ▒▒▒▒▒           ▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒ ▒▒   ▒▒▒▒▒▒▒▒   ▒▒▒▒▒   ▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒   
+        """
+    
+    tagline = "Political Quadrant Analysis Framework"
+    version = "v0.1.0"
+    width = 100
+
+    print(Fore.CYAN + logo)
+    print(Style.BRIGHT + tagline.center(width))
+    print(Fore.YELLOW + version.center(width))
+    print(Fore.CYAN + "=" * width)
