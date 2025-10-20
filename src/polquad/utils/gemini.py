@@ -8,8 +8,7 @@ from .retry_handler import retry_with_backoff
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     raise RuntimeError(
-        "[ERROR] GOOGLE_API_KEY not found in environment. "
-        "Make sure it is set in your shell or venv."
+        "[ERROR] GOOGLE_API_KEY not found in environment."
     )
 GEMINI_MODEL = "gemini-2.5-flash-lite"
 
@@ -45,10 +44,10 @@ class GeminiClient:
             # Handle errors
             if response.text is None:
                 print(f"[GeminiClient] --- Generation Failure ---")
+                reason = "UNKNOWN"
                 if response.candidates and response.candidates[0].finish_reason:
-                     print(f"Reason: {response.candidates[0].finish_reason.name}")
-                print(f"Response: {response}")
-                return "[Error] LLM returned no text. Check failure reason above."
+                     reason = response.candidates[0].finish_reason.name
+                return ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
             
             return response.text.strip()
         
@@ -59,6 +58,7 @@ class GeminiClient:
             print(f"The actual underlying exception was: {e}")
             raise
         
+    @retry_with_backoff(retries=3, base_delay=5)
     def generate_json(
             self,
             prompt: str,
@@ -89,9 +89,10 @@ class GeminiClient:
 
             if response.text is None:
                 print(f"[GeminiClient] --- Generation Failure (JSON) ---")
+                reason = "UNKNOWN"
                 if response.candidates and response.candidates[0].finish_reason:
-                     print(f"Reason: {response.candidates[0].finish_reason.name}")
-                return {"x": 0.0, "y": 0.0}
+                     reason = response.candidates[0].finish_reason.name
+                return ValueError(f"[Error] JSON gerneation failed. Finish reason: {reason}")
             
             return json.loads(response.text.strip())
         
@@ -100,7 +101,7 @@ class GeminiClient:
             traceback.print_exc()
             print(f"\n[GeminiClient] --- CRITICAL API ERROR (JSON) ---")
             print(f"The actual underlying exception was: {e}")
-            return {"x": 0.0, "y": 0.0}
+            raise
 
 # Test Gemini API call
 if __name__ == "__main__":

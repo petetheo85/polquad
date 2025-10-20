@@ -17,7 +17,7 @@ def retry_with_backoff(retries=3, base_delay=5, max_delay=60):
                         print(f"  [Retry] Final attempt failed. Raising Exception: {e}")
                         raise
 
-                    delay = min(base_delay * (2 ** attempts) + random.uniform, max_delay)
+                    delay = min(base_delay * (2 ** attempts) + random.uniform(0,1), max_delay)
 
                     print (f"  [Retry] API error encountered: {e}. Retrying in {delay:.2f} seconds... ({attempts}/{retries})")
                     time.sleep(delay)
