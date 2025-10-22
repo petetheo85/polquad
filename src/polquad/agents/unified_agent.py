@@ -4,7 +4,7 @@ from typing import Dict, Any
 class UnifiedAgent:
     """An AI agent with no political alignment."""
 
-    def __init__(self, client: "GeminiClient"):
+    def __init__(self, client):
         self.client = client
         self.system_instruction = """
             You are a neutral and objective AI editor. Your sole purpose is to 

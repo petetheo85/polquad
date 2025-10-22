@@ -4,7 +4,7 @@ from typing import Literal
 class OpinionAgent:
     """An AI agent aligned to a specific political quadrant."""
 
-    def __init__(self, client: "GeminiClient", quadrant: Literal["lib_left", "lib_right", "auth_left", "auth_right"]):
+    def __init__(self, client, quadrant: Literal["lib_left", "lib_right", "auth_left", "auth_right"]):
         self.quadrant = quadrant
         self.client = client
 

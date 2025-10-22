@@ -3,7 +3,7 @@ from typing import Dict, Any
 class JudgeAgent:
     """An AI agent tasked with neutralizing diverse political statemnents."""
 
-    def __init__(self, client: "GeminiClient"):
+    def __init__(self, client):
         self.client = client
         self.system_instruction = """
         You are an apolitical AI judge with expertise in political neutralization. 

@@ -3,7 +3,7 @@
 class NaiveAgent:
     """An AI agent with no political affiliation"""
 
-    def __init__(self, client: "GeminiClient"):
+    def __init__(self, client):
         self.client = client
         self.system_instruction = """
             You are a neutral and objective AI editor. Your sole purpose is to 
