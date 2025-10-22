@@ -10,13 +10,13 @@ from polquad.utils.formatter import (
     print_summary
 )
 from polquad.utils.gemini import GeminiClient
+from polquad.utils.chat_gpt import ChatGPTClient
+from polquad.utils.claude import ClaudeClient
 from polquad.utils.bias_calculator import BiasCalculator
 from polquad.utils.data_helper import create_dataframe
 from polquad.frameworks.naive import NaiveFramework
 from polquad.frameworks.polquad import PolquadFramework
 from polquad.frameworks.unified import UnifiedPolquadFramework
-
-
 
 # Configuration
 SAMPLE_SIZE = polquad_configs['sample_size']
@@ -27,6 +27,35 @@ DATASET_SOURCE_TYPE = polquad_configs['dataset_source_type']
 BIAS_THRESHOLD = polquad_configs['bias_threshold']
 NUMBER_OF_RUNS = polquad_configs['num_runs']
 OUTPUT_FILE_PATH = polquad_configs['output_file_path']
+
+# Save results to JSON
+def save_results(all_results, output_path):
+    """Save results to a JSON file."""
+    with open(output_path, 'w') as f:
+        json.dump(all_results, f, indent=2)
+    print(f"Results saved to {output_path}")
+
+# Resume processing from checkpoint
+def load_checkpoint(output_path):
+    """Load existing results from checkpoint file if it exists."""
+    try:
+        with open(output_path, 'r') as f:
+            results = json.load(f)
+        print(f"Loaded checkpoint from {output_path} with {len(results)} statements processed.")
+        return results
+    except FileNotFoundError:
+        print(f"No checkpoint found. Starting fresh.")
+        return []
+    
+def get_processed_indices(all_results):
+    """Get set of statement indices already processed."""
+    processed = set()
+    required_frameworks = {"full_polquad", "unified_polquad", "naive"}
+
+    for result in all_results:
+        completed_frameworks = set(result.get('framework_comparison', {}).keys())
+        if required_frameworks.issubset(completed_frameworks):
+            processed.add(result['index'])
 
 def main():
     print("\n\n\n")
@@ -43,7 +72,7 @@ def main():
 
     # Initialize LLM
     print("Initializing LLM Client...", end="", flush=True)
-    client = GeminiClient()
+    client = ClaudeClient()
     print("DONE.")
 
     # Initialize bias calcualtor
@@ -59,10 +88,15 @@ def main():
     }
     print("Setup complete!")
 
-    all_results = []
+    all_results = load_checkpoint(OUTPUT_FILE_PATH)
+    processed_indices = get_processed_indices(all_results)
 
     # Main Loop that iterates through each statement
     for index, row in df.iterrows():
+        # Skip if already processed
+        if index in processed_indices:
+            print(f"Skipping statement {index} (already processed).")
+            continue
         original_statement = row['text']
         print_statement_header(index, original_statement)
 
@@ -93,6 +127,7 @@ def main():
                     }
                 }
             all_results.append(statement_results)
+            save_results(all_results, OUTPUT_FILE_PATH)
             continue
 
         # Framework Loop - runs all frameworks on each statement
@@ -158,7 +193,11 @@ def main():
                 "averages": averages
             }
 
+            # Save results after each framework completes
+            save_results(all_results, OUTPUT_FILE_PATH)
+
         all_results.append(statement_results)
+        save_results(all_results, OUTPUT_FILE_PATH)
 
     # Output to JSON
     print(f"\n{'='*20} Analysis Complete {'='*20}")
