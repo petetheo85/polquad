@@ -71,7 +71,6 @@ def build_dataset():
     
     pbar = tqdm(initial=found_statements_count, total=TARGET_COUNT, desc="Finding Biased Statements")
 
-    # --- Main Loop ---
     # Open the output file in append mode to save progress
     with open(OUTPUT_FILE_PATH, 'a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
@@ -94,7 +93,6 @@ def build_dataset():
                 continue
 
             try:
-                time.sleep(0.5) # Throttle requests
                 _, magnitude = bias_calculator.calculate_bias(statement_text)
                 
                 if magnitude >= BIAS_THRESHOLD:
@@ -104,12 +102,10 @@ def build_dataset():
                     pbar.update(1)
 
             except genai_errors.ServerError as e:
-                # Cleaner, single-line error message for server issues
                 print(f"\n[SERVER ERROR] API unavailable for index {i}. Waiting 30s. Details: {e}")
                 time.sleep(30)
                 continue
             except Exception as e:
-                # Cleaner, single-line error message for all other issues
                 print(f"\n[ERROR] Skipping statement at index {i} due to: {type(e).__name__}")
                 continue
             
