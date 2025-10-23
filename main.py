@@ -49,13 +49,7 @@ def load_checkpoint(output_path):
     
 def get_processed_indices(all_results):
     """Get set of statement indices already processed."""
-    processed = set()
-    required_frameworks = {"full_polquad", "unified_polquad", "naive"}
-
-    for result in all_results:
-        completed_frameworks = set(result.get('framework_comparison', {}).keys())
-        if required_frameworks.issubset(completed_frameworks):
-            processed.add(result['index'])
+    return set(result['index'] for result in all_results)
 
 def main():
     print("\n\n\n")
@@ -86,10 +80,11 @@ def main():
         "unified_polquad": UnifiedPolquadFramework(config=polquad_configs, client=client, bias_calculator=bias_calculator),
         "naive": NaiveFramework(config=polquad_configs, client=client, bias_calculator=bias_calculator)
     }
-    print("Setup complete!")
 
     all_results = load_checkpoint(OUTPUT_FILE_PATH)
-    processed_indices = get_processed_indices(all_results)
+    processed_indices = get_processed_indices(all_results) or set()
+
+    print("Setup complete!")
 
     # Main Loop that iterates through each statement
     for index, row in df.iterrows():
@@ -193,9 +188,7 @@ def main():
                 "averages": averages
             }
 
-            # Save results after each framework completes
-            save_results(all_results, OUTPUT_FILE_PATH)
-
+        # Add statement to results and save progress
         all_results.append(statement_results)
         save_results(all_results, OUTPUT_FILE_PATH)
 
