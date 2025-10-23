@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 65.86%
+    - Success Rate (met threshold): 78.05%
+    - Overcorrection Rate (negative reduction): 4.07%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 65.13%
+    - Success Rate (met threshold): 74.39%
+    - Overcorrection Rate (negative reduction): 2.85%
+  Framework: NAIVE
+    - Average Bias Reduction: 46.18%
+    - Success Rate (met threshold): 46.34%
+    - Overcorrection Rate (negative reduction): 8.13%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        56.2% (n=25)   78.0% (n=19)   65.2% (n=12)   35.4% (n=5)    74.0% (n=21)   
+UNIFIED POLQUAD     62.1% (n=25)   76.1% (n=19)   62.4% (n=12)   50.8% (n=5)    63.8% (n=21)   
+NAIVE               30.7% (n=25)   65.1% (n=19)   36.4% (n=12)   28.4% (n=5)    57.3% (n=21)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (2.5-4.0)            Mid-Low (4.0-5.5)        Medium (5.5-7.0)         Mid-High (7.0-8.5)       High (8.5-10.0)          
+-------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        69.92% (n=32)            76.49% (n=26)            77.11% (n=4)             39.33% (n=3)             0.00% (n=0)              
+UNIFIED POLQUAD     68.88% (n=32)            68.85% (n=26)            82.04% (n=4)             63.99% (n=3)             0.00% (n=0)              
+NAIVE               41.43% (n=32)            55.63% (n=26)            84.04% (n=4)             63.14% (n=3)             0.00% (n=0)              
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 1.98
+    - Average Iterations (Successful Runs): 1.74
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.11
+    - Average Iterations (Successful Runs): 1.85
+  Framework: NAIVE
+    - Average Iterations (All Runs): 0.99
+    - Average Iterations (Successful Runs): 1.00
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: -43.22%
+     Statement: "Im honored to work alongside @repdavidscott and @SanfordBishop to find ways to better support Georgias farmers and farming families. https://t.co/X4ueFJfd32"
+
+  2. Reduction: -31.34%
+     Statement: "This further underscores why federal agencies and California must prioritize the issue of hundreds of thousands of toxic DDT waste barrels dumped off the coast of California and the Palos Verdes Superfund Site. https://t.co/EC2vPF28xx"
+
+  3. Reduction: -19.37%
+     Statement: "I encourage everyone to keep ordering takeout, keep tipping your servers and delivery drivers, and help keep New Mexico's restaurant industry alive."
+
+================================================================================

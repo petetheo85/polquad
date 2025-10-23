@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 66.58%
+    - Success Rate (met threshold): 79.52%
+    - Overcorrection Rate (negative reduction): 3.61%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 58.87%
+    - Success Rate (met threshold): 62.65%
+    - Overcorrection Rate (negative reduction): 4.02%
+  Framework: NAIVE
+    - Average Bias Reduction: 45.39%
+    - Success Rate (met threshold): 48.19%
+    - Overcorrection Rate (negative reduction): 6.83%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        74.8% (n=12)   77.8% (n=25)   63.0% (n=16)   57.7% (n=12)   54.7% (n=18)   
+UNIFIED POLQUAD     52.1% (n=12)   69.4% (n=25)   61.6% (n=16)   50.4% (n=12)   51.9% (n=18)   
+NAIVE               50.4% (n=12)   57.3% (n=25)   37.5% (n=16)   39.7% (n=12)   36.3% (n=18)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (2.5-4.0)            Mid-Low (4.0-5.5)        Medium (5.5-7.0)         Mid-High (7.0-8.5)       High (8.5-10.0)          
+-------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        61.96% (n=24)            71.94% (n=33)            80.96% (n=6)             76.68% (n=3)             45.77% (n=1)             
+UNIFIED POLQUAD     66.68% (n=24)            58.53% (n=33)            56.63% (n=6)             80.95% (n=3)             30.29% (n=1)             
+NAIVE               56.08% (n=24)            38.86% (n=33)            52.46% (n=6)             73.02% (n=3)             45.77% (n=1)             
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.05
+    - Average Iterations (Successful Runs): 1.90
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.18
+    - Average Iterations (Successful Runs): 1.81
+  Framework: NAIVE
+    - Average Iterations (All Runs): 0.98
+    - Average Iterations (Successful Runs): 1.00
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: 0.00%
+     Statement: "Democrats should reverse course and work with Republicans in a bipartisan manner on common-sense solutions meet our countrys economic challenges."
+
+  2. Reduction: 0.00%
+     Statement: "As a boy I fought polio. Today, Americas been polio-free for years thanks to vaccination. Well beat COVID-19 with vaccines too. Protect yourself and your family. Get vaccinated. https://t.co/7rtr7cqOD2"
+
+  3. Reduction: 11.07%
+     Statement: "On #InternationalWomensDay, I'm proud to announce the Girls LEAD Act with my colleagues @SenatorCollins, @RepDavidTrone, @cathymcmorris. This bill invests in girls' leadership and civic engagement to empower the next generation of leaders worldwide. https://t.co/5VKYVsIgNN"
+
+================================================================================

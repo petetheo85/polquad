@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 66.83%
+    - Success Rate (met threshold): 80.49%
+    - Overcorrection Rate (negative reduction): 4.88%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 67.90%
+    - Success Rate (met threshold): 79.27%
+    - Overcorrection Rate (negative reduction): 4.47%
+  Framework: NAIVE
+    - Average Bias Reduction: 45.35%
+    - Success Rate (met threshold): 46.34%
+    - Overcorrection Rate (negative reduction): 7.32%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        53.9% (n=25)   84.2% (n=19)   66.9% (n=12)   45.0% (n=5)    71.7% (n=21)   
+UNIFIED POLQUAD     64.1% (n=25)   74.2% (n=19)   70.0% (n=12)   39.5% (n=5)    72.2% (n=21)   
+NAIVE               28.1% (n=25)   63.1% (n=19)   39.7% (n=12)   40.3% (n=5)    54.4% (n=21)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (2.5-4.0)            Mid-Low (4.0-5.5)        Medium (5.5-7.0)         Mid-High (7.0-8.5)       High (8.5-10.0)          
+-------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        66.49% (n=32)            74.35% (n=26)            90.05% (n=4)             41.72% (n=3)             0.00% (n=0)              
+UNIFIED POLQUAD     73.80% (n=32)            71.08% (n=26)            86.60% (n=4)             60.57% (n=3)             0.00% (n=0)              
+NAIVE               39.49% (n=32)            60.44% (n=26)            76.68% (n=4)             42.72% (n=3)             0.00% (n=0)              
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 1.99
+    - Average Iterations (Successful Runs): 1.79
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.00
+    - Average Iterations (Successful Runs): 1.78
+  Framework: NAIVE
+    - Average Iterations (All Runs): 0.99
+    - Average Iterations (Successful Runs): 1.00
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: -30.02%
+     Statement: "Major victory: The USDA has agreed to fully compensate Rio Arriba farmers and  ranchers for unfair changes made to the NAP reimbursement rate, and the USDA is pausing a policy change that would have stopped covering drought claims on acequia-irrigated lands. https://t.co/vBg6ghfN2V"
+
+  2. Reduction: -1.81%
+     Statement: "Sinema Office Statement on Historic Medicare Drug Negotiation Agreement: https://t.co/jiHeH6q4kB"
+
+  3. Reduction: 0.00%
+     Statement: "Visit @AZDHSs Find Vaccine page to find a vaccination site in your county. Remember, only those who fit their county's vaccination phase, schedule an appointment, and provide appropriate ID will be vaccinated. https://t.co/DLPpJ5XaIv"
+
+================================================================================
