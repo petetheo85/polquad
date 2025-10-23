@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 76.45%
+    - Success Rate (met threshold): 60.00%
+    - Overcorrection Rate (negative reduction): 0.67%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 73.30%
+    - Success Rate (met threshold): 59.00%
+    - Overcorrection Rate (negative reduction): 1.33%
+  Framework: NAIVE
+    - Average Bias Reduction: 50.62%
+    - Success Rate (met threshold): 12.00%
+    - Overcorrection Rate (negative reduction): 2.67%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        61.2% (n=4)    73.5% (n=19)   44.0% (n=7)    81.1% (n=69)   100.0% (n=1)   
+UNIFIED POLQUAD     66.3% (n=4)    69.1% (n=19)   27.2% (n=7)    79.1% (n=69)   100.0% (n=1)   
+NAIVE               49.8% (n=4)    45.6% (n=19)   7.4% (n=7)     56.1% (n=69)   70.6% (n=1)    
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              -3.13% (n=1)             0.00% (n=0)              70.19% (n=1)             63.40% (n=9)             84.72% (n=35)            
+UNIFIED POLQUAD     0.00% (n=0)              -27.02% (n=1)            0.00% (n=0)              73.17% (n=1)             42.62% (n=9)             78.84% (n=35)            
+NAIVE               0.00% (n=0)              -74.19% (n=1)            0.00% (n=0)              71.87% (n=1)             29.82% (n=9)             59.54% (n=35)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.48
+    - Average Iterations (Successful Runs): 2.13
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.47
+    - Average Iterations (Successful Runs): 2.10
+  Framework: NAIVE
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: -3.13%
+     Statement: "My side hustle is finally paying off. https://t.co/Bpr7RFxx8n"
+
+  2. Reduction: 8.30%
+     Statement: "No one in #Cuba has guns. But tonight heavily armed socialist shock troops are marching in Havana Make no mistake @potus # this regime will threaten you with another Mariel and  is willing to murder unarmed people to stay in power #SOSCuba #PatriaYVida https://t.co/ETJawsZDTQ"
+
+  3. Reduction: 11.68%
+     Statement: "Alexei @navalny is a courageous Russian hero. He has consistently stood up to Putin and his cronies. On numerous occasions, he has placed his own life in jeopardy to bring the truth to light."
+
+================================================================================
