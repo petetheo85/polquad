@@ -1,0 +1,208 @@
+================================================================================
+                      ANALYSIS FOR GROUP: HIGH_BIAS_CLAUDE                      
+================================================================================
+
+--- Overall Framework Performance ---
+
+Total Unique Statements Processed (n=100)
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 76.45%
+    - Success Rate (met threshold): 60.00%
+    - Overcorrection Rate (negative reduction): 0.67%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 73.30%
+    - Success Rate (met threshold): 59.00%
+    - Overcorrection Rate (negative reduction): 1.33%
+  Framework: NAIVE
+    - Average Bias Reduction: 50.62%
+    - Success Rate (met threshold): 12.00%
+    - Overcorrection Rate (negative reduction): 2.67%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        61.2% (n=4)    73.5% (n=19)   44.0% (n=7)    81.1% (n=69)   100.0% (n=1)   
+UNIFIED POLQUAD     66.3% (n=4)    69.1% (n=19)   27.2% (n=7)    79.1% (n=69)   100.0% (n=1)   
+NAIVE               49.8% (n=4)    45.6% (n=19)   7.4% (n=7)     56.1% (n=69)   70.6% (n=1)    
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              -3.13% (n=1)             0.00% (n=0)              70.19% (n=1)             63.40% (n=9)             84.72% (n=35)            
+UNIFIED POLQUAD     0.00% (n=0)              -27.02% (n=1)            0.00% (n=0)              73.17% (n=1)             42.62% (n=9)             78.84% (n=35)            
+NAIVE               0.00% (n=0)              -74.19% (n=1)            0.00% (n=0)              71.87% (n=1)             29.82% (n=9)             59.54% (n=35)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.48
+    - Average Iterations (Successful Runs): 2.13
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.47
+    - Average Iterations (Successful Runs): 2.10
+  Framework: NAIVE
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+
+================================================================================
+
+
+================================================================================
+                      ANALYSIS FOR GROUP: HIGH_BIAS_GEMINI                      
+================================================================================
+
+--- Overall Framework Performance ---
+
+Total Unique Statements Processed (n=279)
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 78.71%
+    - Success Rate (met threshold): 80.65%
+    - Overcorrection Rate (negative reduction): 1.31%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 72.99%
+    - Success Rate (met threshold): 69.89%
+    - Overcorrection Rate (negative reduction): 2.03%
+  Framework: NAIVE
+    - Average Bias Reduction: 58.73%
+    - Success Rate (met threshold): 40.50%
+    - Overcorrection Rate (negative reduction): 2.27%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        46.1% (n=21)   88.6% (n=170)  64.6% (n=9)    74.9% (n=55)   50.8% (n=24)   
+UNIFIED POLQUAD     42.9% (n=21)   79.6% (n=170)  51.4% (n=9)    72.4% (n=55)   62.0% (n=24)   
+NAIVE               25.1% (n=21)   67.8% (n=170)  51.9% (n=9)    48.3% (n=55)   50.3% (n=24)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              78.83% (n=195)           83.44% (n=74)            
+UNIFIED POLQUAD     0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              74.18% (n=195)           73.31% (n=74)            
+NAIVE               0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              60.13% (n=195)           61.12% (n=74)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.07
+    - Average Iterations (Successful Runs): 1.85
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.28
+    - Average Iterations (Successful Runs): 1.97
+  Framework: NAIVE
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+
+================================================================================
+
+
+================================================================================
+                      ANALYSIS FOR GROUP: HIGH_BIAS_OPENAI                      
+================================================================================
+
+--- Overall Framework Performance ---
+
+Total Unique Statements Processed (n=98)
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 76.66%
+    - Success Rate (met threshold): 76.53%
+    - Overcorrection Rate (negative reduction): 1.02%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 41.93%
+    - Success Rate (met threshold): 43.88%
+    - Overcorrection Rate (negative reduction): 4.08%
+  Framework: NAIVE
+    - Average Bias Reduction: 25.61%
+    - Success Rate (met threshold): 17.35%
+    - Overcorrection Rate (negative reduction): 4.08%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        67.8% (n=29)   82.4% (n=27)   68.8% (n=1)    95.8% (n=6)    76.5% (n=35)   
+UNIFIED POLQUAD     38.5% (n=29)   38.5% (n=27)   79.5% (n=1)    66.0% (n=6)    42.2% (n=35)   
+NAIVE               29.4% (n=29)   22.8% (n=27)   12.4% (n=1)    34.7% (n=6)    23.4% (n=35)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        100.00% (n=1)            88.82% (n=3)             73.69% (n=35)            92.93% (n=4)             83.34% (n=32)            62.41% (n=13)            
+UNIFIED POLQUAD     100.00% (n=1)            17.62% (n=3)             35.03% (n=35)            24.37% (n=4)             48.11% (n=32)            47.28% (n=13)            
+NAIVE               100.00% (n=1)            5.27% (n=3)              18.70% (n=35)            20.73% (n=4)             24.99% (n=32)            37.27% (n=13)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.04
+    - Average Iterations (Successful Runs): 1.75
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.71
+    - Average Iterations (Successful Runs): 2.33
+  Framework: NAIVE
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+
+================================================================================
+
+
+================================================================================
+                      ANALYSIS FOR GROUP: ORIGINAL_GEMINI                       
+================================================================================
+
+--- Overall Framework Performance ---
+
+Total Unique Statements Processed (n=787)
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 67.44%
+    - Success Rate (met threshold): 78.02%
+    - Overcorrection Rate (negative reduction): 3.52%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 64.01%
+    - Success Rate (met threshold): 69.12%
+    - Overcorrection Rate (negative reduction): 3.52%
+  Framework: NAIVE
+    - Average Bias Reduction: 46.96%
+    - Success Rate (met threshold): 48.79%
+    - Overcorrection Rate (negative reduction): 6.14%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        62.4% (n=167)  75.9% (n=223)  64.0% (n=138)  56.8% (n=74)   68.6% (n=185)  
+UNIFIED POLQUAD     59.2% (n=167)  72.5% (n=223)  64.4% (n=138)  55.7% (n=74)   61.3% (n=185)  
+NAIVE               37.4% (n=167)  58.1% (n=223)  42.4% (n=138)  40.4% (n=74)   48.1% (n=185)  
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        57.70% (n=121)           68.09% (n=294)           70.60% (n=294)           79.16% (n=33)            74.79% (n=30)            77.17% (n=6)             
+UNIFIED POLQUAD     51.95% (n=121)           69.95% (n=294)           63.58% (n=294)           69.15% (n=33)            70.43% (n=30)            73.32% (n=6)             
+NAIVE               33.08% (n=121)           48.95% (n=294)           48.48% (n=294)           58.87% (n=33)            64.33% (n=30)            72.88% (n=6)             
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.04
+    - Average Iterations (Successful Runs): 1.81
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.13
+    - Average Iterations (Successful Runs): 1.80
+  Framework: NAIVE
+    - Average Iterations (All Runs): 0.99
+    - Average Iterations (Successful Runs): 1.00
+
+================================================================================
+
+
