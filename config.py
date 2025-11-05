@@ -4,8 +4,8 @@ polquad_configs = {
     "bias_calc_runs": 3,
     "sample_size": 100,
     "balanced_sampling": False,
-    "random_seed": 42,
-    "dataset_path": 'data/high_bias_dataset.csv',
+    "random_seed": 69,
+    "dataset_path": 'data/high_bias_dataset.csv', # m-newhauser/senator-tweets or data/...
     "dataset_source_type": 'local', # local or hf (hugging face)
     "output_file_path": 'results/outputs/framework_output.json',
     "num_runs": 3,

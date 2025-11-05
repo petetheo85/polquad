@@ -1,0 +1,50 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 0.00%
+    - Success Rate (met threshold): 0.00%
+    - Overcorrection Rate (negative reduction): 0.00%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 0.00%
+    - Success Rate (met threshold): 0.00%
+    - Overcorrection Rate (negative reduction): 0.00%
+  Framework: NAIVE
+    - Average Bias Reduction: 58.90%
+    - Success Rate (met threshold): 62.65%
+    - Overcorrection Rate (negative reduction): 4.82%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     
+UNIFIED POLQUAD     0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     0.0% (n=0)     
+NAIVE               67.9% (n=12)   69.3% (n=25)   56.2% (n=16)   49.2% (n=12)   47.3% (n=18)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              
+UNIFIED POLQUAD     0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              
+NAIVE               44.47% (n=14)            75.50% (n=24)            56.75% (n=33)            48.77% (n=6)             80.95% (n=3)             45.77% (n=1)             
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 0.00
+    - Average Iterations (Successful Runs): 0.00
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 0.00
+    - Average Iterations (Successful Runs): 0.00
+  Framework: NAIVE
+    - Average Iterations (All Runs): 2.07
+    - Average Iterations (Successful Runs): 1.63
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+================================================================================

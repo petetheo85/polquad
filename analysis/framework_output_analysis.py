@@ -31,7 +31,7 @@ def analyze_results():
     Loads the consolidated framework output and saves a detailed
     statistical summary to a text file.
     """
-    data_file_path = project_root / "results/outputs/framework_output_seed42_100_high_bias_openai.json"
+    data_file_path = project_root / "results/outputs/framework_output.json"
     output_report_path = project_root / "results/analysis/analysis_report.txt"
     bias_threshold = polquad_configs.get('bias_threshold', 2.5)
     

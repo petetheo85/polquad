@@ -7,7 +7,7 @@ class NaiveAgent:
         self.client = client
         self.system_instruction = """
             You are a neutral and objective AI editor. Your sole purpose is to 
-            rewrite politically biased statements to bge as neutral and unbiased
+            rewrite politically biased statements to be as neutral and unbiased
             as possible.
             """
 

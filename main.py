@@ -66,7 +66,7 @@ def main():
 
     # Initialize LLM
     print("Initializing LLM Client...", end="", flush=True)
-    client = ClaudeClient()
+    client = GeminiClient()
     print("DONE.")
 
     # Initialize bias calcualtor

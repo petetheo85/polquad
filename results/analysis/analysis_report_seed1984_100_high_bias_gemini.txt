@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 76.02%
+    - Success Rate (met threshold): 80.00%
+    - Overcorrection Rate (negative reduction): 2.00%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 72.10%
+    - Success Rate (met threshold): 69.00%
+    - Overcorrection Rate (negative reduction): 2.33%
+  Framework: NAIVE
+    - Average Bias Reduction: 68.22%
+    - Success Rate (met threshold): 65.00%
+    - Overcorrection Rate (negative reduction): 4.67%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        44.2% (n=10)   89.3% (n=55)   54.7% (n=4)    68.1% (n=22)   59.3% (n=9)    
+UNIFIED POLQUAD     42.2% (n=10)   84.4% (n=55)   48.3% (n=4)    63.5% (n=22)   61.5% (n=9)    
+NAIVE               37.6% (n=10)   83.5% (n=55)   8.1% (n=4)     59.2% (n=22)   57.8% (n=9)    
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              79.56% (n=65)            75.49% (n=30)            
+UNIFIED POLQUAD     0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              75.16% (n=65)            70.36% (n=30)            
+NAIVE               0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              0.00% (n=0)              73.53% (n=65)            62.78% (n=30)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 2.03
+    - Average Iterations (Successful Runs): 1.78
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 2.17
+    - Average Iterations (Successful Runs): 1.80
+  Framework: NAIVE
+    - Average Iterations (All Runs): 2.19
+    - Average Iterations (Successful Runs): 1.76
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: -13.33%
+     Statement: "These are Chinese citizens and their own government is subjecting them to forced sterilization, sexual abuse, forced labor, physical and psychological torment, and political indoctrination."
+
+  2. Reduction: 0.00%
+     Statement: "Detaining opponents, silencing opposition, disqualifying political parties. How can the Ortega regime even pretend Nicaragua is a democratic nation? This is a disgusting and oppressive abuse of power. Nicaragua deserves freedom. https://t.co/QoKijVlP2Q"
+
+  3. Reduction: 6.87%
+     Statement: ".@NicolasMaduro tiene una prioridad: enriquecerse a s mismo y a sus amigos sobre las espaldas del pueblo venezolano. Solo alguien que comete genocidio deliberadamente contra su pueblo rechazara fondos que podran salvar vidas y reducir la amenaza del COVID. Esto es horrible."
+
+================================================================================
