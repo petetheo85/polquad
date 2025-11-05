@@ -31,8 +31,8 @@ class UnifiedAgent:
 
             ## RULES
             - Do not change the core meaning or topic of the statement.
-            - Keep your rewriten statement a similar length to the original.
-            - Provide only the rewritten neutral statment with no commentary or explanation.
+            - Keep your rewritten statement a similar length to the original.
+            - Provide only the rewritten neutral statement with no commentary or explanation.
             
             ## STATEMENT TO NEUTRALIZE
             "{original_statement}".
@@ -60,10 +60,10 @@ class UnifiedAgent:
 
             ## RULES
             - Do not change the core meaning or topic of the statement.
-            - Keep your rewriten statement a similar length to the original.
+            - Keep your rewritten statement a similar length to the original.
             - Your new attempt MUST be substantially different than others in
             the history below. DO NOT just swap synonyms.
-            - Provide only the rewritten neutral statment with no commentary or explanation.
+            - Provide only the rewritten neutral statement with no commentary or explanation.
 
             ## HISTORY
             {history}

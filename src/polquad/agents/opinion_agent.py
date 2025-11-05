@@ -43,7 +43,7 @@ class OpinionAgent:
         The most recent comment was "{statement}"   
          
         ## TASK 
-        Your task is to provide a concise opinioin in response to the statement.
+        Your task is to provide a concise opinion in response to the statement.
 
         ## ANALYSIS PROCESS
         Before writing your opinion, you must silently analyze the statement's core message to identify its underlying political dimension:
@@ -51,7 +51,7 @@ class OpinionAgent:
         2. **Social Dimension:** Does the statement have an authoritarian (pro-control/security) or libertarian (pro-freedom/autonomy) social view?
 
         ## INSTRUCTIONS
-        Based on your silent analysis, formulate an opinon that resonds ONLY to the political elements you identified.
+        Based on your silent analysis, formulate an opinion that responds ONLY to the political elements you identified.
         Speak strictly from your political perspective.
         If the statement aligns with your views, you should bolster it.
         If the statement opposes your views, you should provide a counter-argument.
