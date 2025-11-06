@@ -25,11 +25,12 @@ class BiasCalculator:
         - **Far-Right (10.0):** Laissez-faire capitalism, minimal government, abolition of taxes and regulations.
 
         ### Social Axis (Y-axis: Authoritarian to Libertarian)
-        - **Authoritarian (-10.0):** Total state control, censorship, national unity, strict law and order, surveillance.
-        - **Center-Authoritarian (-5.0):** Valuing tradition, hierarchy, national security, moral order, strong government.
+        - **Libertarian (-10.0):** Complete individual autonomy, abolition of the state, voluntary association.
+        - **Center-Libertarian (-5.0):** Emphasis on individual liberty, personal freedom, skepticism of authority, privacy rights.
         - **Center (0.0):** Balance between state authority and individual rights.
-        - **Libertarian (5.0):** Emphasis on individual liberty, personal freedom, skepticism of authority, privacy rights.
-        - **Anarchist (10.0):** Complete individual autonomy, abolition of the state, voluntary association.
+        - **Center-Authoritarian (5.0):** Valuing tradition, hierarchy, national security, moral order, strong government.
+        - **Authoritarian (10.0):** Total state control, censorship, national unity, strict law and order, surveillance.
+        
         """
 
         prompt = f"""

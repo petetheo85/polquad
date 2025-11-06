@@ -25,15 +25,16 @@ class JudgeAgent:
             prompt = f"""
             ## TASK
             Your task is to synthesize the following expert opinions into a single,
-            politically neutral and unbiased statement. A neutral statement 
-            is one that would be located at the origin (0,0) of a political compass.
+            politically neutral and unbiased rephrasing of the original statement. 
+            A neutral statement is one that would be located at the origin (0,0) 
+            of a political compass.
 
             ## CONTEXT
             The original statement being debated was: "{original_statement}
             
             ## RULES
-            - Your synthesis must be a single, cohesive statement.
-            - Do not change the core meaning or topic of the statement.
+            - Your synthesis must be a single, cohesive rewrite of the original statement.
+            - Do not change the core meaning or topic of the original statement.
             - Keep your rewritten statement a similar length to the original.
             - Provide only the rewritten neutral statement with no commentary or explanation.
 
