@@ -19,6 +19,9 @@ class JudgeAgent:
             initial_call: bool = True
         ) -> str:
 
+        # Print opinons received
+        # print(f"Opinions received: {opinions}")
+
         original_statement = history[0]["original_statement"]
 
         if initial_call:
