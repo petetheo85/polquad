@@ -1,6 +1,6 @@
 import json
 import statistics
-from config import polquad_configs
+from polquad.config import polquad_configs
 from polquad.utils.formatter import (
     print_startup_screen,
     print_main_header,
@@ -9,9 +9,9 @@ from polquad.utils.formatter import (
     print_error,
     print_summary
 )
-from polquad.utils.gemini import GeminiClient
-from polquad.utils.chat_gpt import ChatGPTClient
-from polquad.utils.claude import ClaudeClient
+from polquad.utils.gemini_client import GeminiClient
+from polquad.utils.openai_client import ChatGPTClient
+from polquad.utils.claude_client import ClaudeClient
 from polquad.utils.bias_calculator import BiasCalculator
 from polquad.utils.data_helper import create_dataframe
 from polquad.frameworks.naive import NaiveFramework

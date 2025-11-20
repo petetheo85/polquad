@@ -24,3 +24,7 @@ __pycache__/
 
 # pytest cache
 .pytest_cache/
+
+# Environment and secrets
+.env
+*.env

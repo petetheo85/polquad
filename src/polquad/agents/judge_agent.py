@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
 class JudgeAgent:
-    """An AI agent tasked with neutralizing diverse political statemnents."""
+    """An AI agent tasked with synthesizing diverse political statements into neutrality."""
 
     def __init__(self, client):
         self.client = client
@@ -19,7 +19,7 @@ class JudgeAgent:
             initial_call: bool = True
         ) -> str:
 
-        # Print opinons received
+        # Print opinions received
         # print(f"Opinions received: {opinions}")
 
         original_statement = history[0]["original_statement"]
@@ -69,10 +69,10 @@ class JudgeAgent:
 
             ## RULES
             - Do not change the core meaning or topic of the statement.
-            - Keep your rewriten statement a similar length to the original.
+            - Keep your rewritten statement a similar length to the original.
             - Your new attempt MUST be substantially different than others in
             the history below. DO NOT just swap synonyms.
-            - Provide only the rewritten neutral statment with no commentary or explanation.
+            - Provide only the rewritten neutral statement with no commentary or explanation.
 
             ## HISTORY
             {history}

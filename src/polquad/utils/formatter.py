@@ -40,7 +40,7 @@ def print_summary(framework_name: str, averages: dict):
     print(f"    - Average Iterations: {averages['avg_iterations']:.2f}")
 
 def print_startup_screen():
-    """Prints a ridiculously awesome ASCII art startup screen."""
+    """Prints a ridiculously awesome and completely unnecessary ASCII art startup screen."""
     logo = r"""
      ███████████     ███████    █████          ██████    █████  █████   █████████   ██████████  
     ▒▒███▒▒▒▒▒███  ███▒▒▒▒▒███ ▒▒███         ███▒▒▒▒███ ▒▒███  ▒▒███   ███▒▒▒▒▒███ ▒▒███▒▒▒▒███ 

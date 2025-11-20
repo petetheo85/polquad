@@ -87,29 +87,3 @@ class BiasCalculator:
         print(f"  ↳ [Bias Calculator] Baseline Bias Coordinates: ({bias['x']}, {bias['y']})")
         print(f"  ↳ [Bias Calculator] Baseline Bias Magnitude: {mag}")
         return bias
-
-
-# Test Bias Calculator 
-if __name__ == "__main__":
-    import sys
-    from pathlib import Path
-    project_root = Path(__file__).resolve().parent.parent.parent.parent
-    sys.path.append(str(project_root))
-    from polquad.utils.gemini import GeminiClient
-    from config import polquad_configs
-
-    client = GeminiClient()
-    calculator = BiasCalculator(client, polquad_configs)
-
-    test_statements = (
-        "We need a strong state to maintain moral order.",
-        "Everyone should be free to marry whoever they want.",
-        "Corporations should be nationalized.",
-        "Taxes should be abolished entirely."
-    )
-
-    for statement in test_statements:
-        bias, mag = calculator.calculate_bias(statement)
-        print(f"\nStatement: {statement}")
-        print(f"Calculated Bias Coordinates: ({bias['x']}, {bias['y']})")
-        print(f"Calculated Bias Magnitude: {mag}")

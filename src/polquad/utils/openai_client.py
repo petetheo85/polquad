@@ -4,23 +4,22 @@ from openai import OpenAI
 from typing import Optional, Dict
 from .retry_handler import retry_with_backoff
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise RuntimeError(
-        "[ERROR] OPENAI_API_KEY not found in environment."
-    )
-GPT_MODEL = "gpt-4o-mini"
+DEFAULT_GPT_MODEL = "gpt-4o-mini"
 
 
 class ChatGPTClient:
-    """Wrapper class for interacting with the Gemini API."""
+    """Wrapper class for interacting with the OpenAI API."""
 
-    def __init__(self, api_key: str = OPENAI_API_KEY, model: str = GPT_MODEL):
-        self.api_key = api_key
+    def __init__(self, api_key: Optional[str] = None, model: str = DEFAULT_GPT_MODEL):
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        if not self.api_key:
+            raise RuntimeError(
+                "[ERROR] OPENAI_API_KEY not found in environment or passed to client."
+            )
         self.client = OpenAI(api_key=self.api_key)
         self.model = model
 
-    # API call to generate text (OpinionAgent, JudgeAgentF, UnifiedAgent)
+    # API call to generate text (OpinionAgent, JudgeAgent, UnifiedAgent)
     @retry_with_backoff(retries=3, base_delay=5)
     def generate_text(
             self,
@@ -46,7 +45,7 @@ class ChatGPTClient:
             if response.choices[0].message.content is None:
                 print(f"[ChatGPTClient] --- Generation Failure ---")
                 reason = response.choices[0].finish_reason or "UNKNOWN"
-                return ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
+                raise ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
             
             return response.choices[0].message.content.strip()
         
@@ -104,7 +103,7 @@ class ChatGPTClient:
             if response.choices[0].message.content is None:
                 print(f"[ChatGPTClient] --- Generation Failure ---")
                 reason = response.choices[0].finish_reason or "UNKNOWN"
-                return ValueError(f"[Error] JSON generation failed. Finish reason: {reason}")
+                raise ValueError(f"[Error] JSON generation failed. Finish reason: {reason}")
             
             return json.loads(response.choices[0].message.content.strip())
         
@@ -114,20 +113,3 @@ class ChatGPTClient:
             print(f"\n[ChatGPTClient] --- CRITICAL API ERROR (JSON) ---")
             print(f"The actual underlying exception was: {e}")
             raise
-
-# Test Gemini API call
-if __name__ == "__main__":
-    client = ChatGPTClient()
-    system_instruction = "You are a cat. Your name is Neko."
-    contents = "Hello there." 
-    print("TESTING TEXT API: \n", client.generate_text(contents, system_instruction))
-
-    json_system_instruction = """
-        You are a political scientist. Analyze the following statement for economic
-        and social bias on a scale of -10.0 to 10.0. X is economic (Left/Right) 
-        and Y is social (Authoritarian/Libertarian)."""
-    json_contents = "National defense spending should be doubled, and all taxes should be eliminated."
-    print("\nTESTING JSON API: ", client.generate_json(json_contents, json_system_instruction))
-
-
-        

@@ -1,26 +1,24 @@
 import os
-import json
 from anthropic import Anthropic
 from typing import Optional, Dict
 from .retry_handler import retry_with_backoff
 
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-if not ANTHROPIC_API_KEY:
-    raise RuntimeError(
-        "[ERROR] ANTHROPIC_API_KEY not found in environment."
-    )
-ANTHROPIC_MODEL = "claude-3-5-haiku-20241022"
+DEFAULT_ANTHROPIC_MODEL = "claude-3-5-haiku-20241022"
 
 
 class ClaudeClient:
-    """Wrapper class for interacting with the Gemini API."""
+    """Wrapper class for interacting with the Anthropic Claude API."""
 
-    def __init__(self, api_key: str = ANTHROPIC_API_KEY, model: str = ANTHROPIC_MODEL):
-        self.api_key = api_key
+    def __init__(self, api_key: Optional[str] = None, model: str = DEFAULT_ANTHROPIC_MODEL):
+        self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
+        if not self.api_key:
+            raise RuntimeError(
+                "[ERROR] ANTHROPIC_API_KEY not found in environment or passed to client."
+            )
         self.client = Anthropic(api_key=self.api_key)
         self.model = model
 
-    # API call to generate text (OpinionAgent, JudgeAgentF, UnifiedAgent)
+    # API call to generate text (OpinionAgent, JudgeAgent, UnifiedAgent)
     @retry_with_backoff(retries=3, base_delay=5)
     def generate_text(
             self,
@@ -43,10 +41,8 @@ class ClaudeClient:
             # Handle errors
             if not response.content or response.content[0].text is None:
                 print(f"[ClaudeClient] --- Generation Failure ---")
-                reason = "UNKNOWN"
-                if response.candidates and response.candidates[0].finish_reason:
-                     reason = response.stop_reason
-                return ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
+                reason = response.stop_reason or "UNKNOWN"
+                raise ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
             
             return response.content[0].text.strip()
         
@@ -103,7 +99,7 @@ class ClaudeClient:
             if not response.content:
                 print(f"[ClaudeClient] --- Generation Failure (JSON) ---")
                 reason = response.stop_reason or "UNKNOWN"
-                return ValueError(f"[Error] JSON generation failed. Stop reason: {reason}")
+                raise ValueError(f"[Error] JSON generation failed. Stop reason: {reason}")
             
             # Extract tool use from response
             for block in response.content:
@@ -118,22 +114,3 @@ class ClaudeClient:
             print(f"\n[ClaudeClient] --- CRITICAL API ERROR (JSON) ---")
             print(f"The actual underlying exception was: {e}")
             raise
-
-# Test Gemini API call
-if __name__ == "__main__":
-    # List all available models
-    # client=Anthropic()
-    # models = client.models.list(limit=20)
-    # print(models)
-
-    client = ClaudeClient()
-    system_instruction = "You are a cat. Your name is Neko."
-    contents = "Hello there." 
-    print("TESTING TEXT API: \n", client.generate_text(contents, system_instruction))
-
-    json_system_instruction = """
-        You are a political scientist. Analyze the following statement for economic
-        and social bias on a scale of -10.0 to 10.0. X is economic (Left/Right) 
-        and Y is social (Authoritarian/Libertarian)."""
-    json_contents = "National defense spending should be doubled, and all taxes should be eliminated."
-    print("\nTESTING JSON API: ", client.generate_json(json_contents, json_system_instruction))

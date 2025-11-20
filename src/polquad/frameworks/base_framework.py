@@ -1,4 +1,7 @@
-class BaseFramework:
+from abc import ABC, abstractmethod
+
+
+class BaseFramework(ABC):
 
     def __init__(self, config, bias_calculator, client, framework_name):
         self.config = config
@@ -53,8 +56,10 @@ class BaseFramework:
 
         return history
     
-    def _get_moderated_statement(self, history, is_first_run):
-        raise NotImplementedError("Hey, Dummy... You forgot moderation logic!!")
+    @abstractmethod
+    def _get_moderated_statement(self, history, bias_threshold, specific_data, is_first_run):
+        """Abstract method: subclasses must implement specific moderation logic."""
+        raise NotImplementedError("Subclasses must implement _get_moderated_statement().")
     
     def _build_result_dict(self, index, row, original_bias, original_mag, history, specific_data):
         """Builds the final JSON output."""

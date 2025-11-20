@@ -5,23 +5,22 @@ from google.genai import types
 from typing import Optional, Dict
 from .retry_handler import retry_with_backoff
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-if not GOOGLE_API_KEY:
-    raise RuntimeError(
-        "[ERROR] GOOGLE_API_KEY not found in environment."
-    )
-GEMINI_MODEL = "gemini-2.5-flash-lite"
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash-lite"
 
 
 class GeminiClient:
-    """Wrapper class for interacting with the Gemini API."""
+    """Wrapper class for interacting with the Google Gemini API."""
 
-    def __init__(self, api_key: str = GOOGLE_API_KEY, model: str = GEMINI_MODEL):
-        self.api_key = api_key
+    def __init__(self, api_key: Optional[str] = None, model: str = DEFAULT_GEMINI_MODEL):
+        self.api_key = api_key or os.getenv("GOOGLE_API_KEY")
+        if not self.api_key:
+            raise RuntimeError(
+                "[ERROR] GOOGLE_API_KEY not found in environment or passed to client."
+            )
         self.client = genai.Client(api_key=self.api_key)
         self.model = model
 
-    # API call to generate text (OpinionAgent, JudgeAgentF, UnifiedAgent)
+    # API call to generate text (OpinionAgent, JudgeAgent, UnifiedAgent)
     @retry_with_backoff(retries=3, base_delay=5)
     def generate_text(
             self,
@@ -47,7 +46,7 @@ class GeminiClient:
                 reason = "UNKNOWN"
                 if response.candidates and response.candidates[0].finish_reason:
                      reason = response.candidates[0].finish_reason.name
-                return ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
+                raise ValueError(f"[Error] LLM returned no text. Finish reason: {reason}")
             
             return response.text.strip()
         
@@ -92,7 +91,7 @@ class GeminiClient:
                 reason = "UNKNOWN"
                 if response.candidates and response.candidates[0].finish_reason:
                      reason = response.candidates[0].finish_reason.name
-                return ValueError(f"[Error] JSON gerneation failed. Finish reason: {reason}")
+                raise ValueError(f"[Error] JSON generation failed. Finish reason: {reason}")
             
             return json.loads(response.text.strip())
         
@@ -102,20 +101,3 @@ class GeminiClient:
             print(f"\n[GeminiClient] --- CRITICAL API ERROR (JSON) ---")
             print(f"The actual underlying exception was: {e}")
             raise
-
-# Test Gemini API call
-if __name__ == "__main__":
-    client = GeminiClient()
-    system_instruction = "You are a cat. Your name is Neko."
-    contents = "Hello there." 
-    print("TESTING TEXT API: \n", client.generate_text(contents, system_instruction))
-
-    json_system_instruction = """
-        You are a political scientist. Analyze the following statement for economic
-        and social bias on a scale of -10.0 to 10.0. X is economic (Left/Right) 
-        and Y is social (Authoritarian/Libertarian)."""
-    json_contents = "National defense spending should be doubled, and all taxes should be eliminated."
-    print("\nTESTING JSON API: ", client.generate_json(json_contents, json_system_instruction))
-
-
-        

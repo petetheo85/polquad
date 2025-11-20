@@ -6,7 +6,7 @@ class NaiveFramework(BaseFramework):
     def __init__(self, config, bias_calculator, client):
         super().__init__(config, bias_calculator, client, framework_name="naive")
 
-        # Initialize Unified Agent
+        # Initialize Naïve Agent
         print("  ↳ [Naive] Initializing Naïve Agent...", end="", flush="True")
         self.naive_agent = NaiveAgent(self.client)
         print("DONE.")
