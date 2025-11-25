@@ -1,0 +1,115 @@
+================================================================================
+      ABLATION STUDY ANALYSIS - AGGREGATED ACROSS 3 SEEDS (42, 1337, 1984)      
+================================================================================
+
+--- Overall Ablation Performance ---
+
+Total Unique Statements Processed (n=3000)
+
+  Ablation: AL + AR (Authoritarion)
+    - Average Bias Reduction: 74.01%
+    - Success Rate (met threshold): 76.00%
+    - Overcorrection Rate (negative reduction): 2.22%
+  Ablation: AL Only
+    - Average Bias Reduction: 73.77%
+    - Success Rate (met threshold): 77.00%
+    - Overcorrection Rate (negative reduction): 3.11%
+  Ablation: AL + LR (Diagonal)
+    - Average Bias Reduction: 73.17%
+    - Success Rate (met threshold): 78.33%
+    - Overcorrection Rate (negative reduction): 2.22%
+  Ablation: AR + LL (Diagonal)
+    - Average Bias Reduction: 72.02%
+    - Success Rate (met threshold): 76.00%
+    - Overcorrection Rate (negative reduction): 3.00%
+  Ablation: AL + LL (Left)
+    - Average Bias Reduction: 71.94%
+    - Success Rate (met threshold): 78.33%
+    - Overcorrection Rate (negative reduction): 3.11%
+  Ablation: LL Only
+    - Average Bias Reduction: 70.72%
+    - Success Rate (met threshold): 75.67%
+    - Overcorrection Rate (negative reduction): 3.44%
+  Ablation: AR Only
+    - Average Bias Reduction: 69.98%
+    - Success Rate (met threshold): 75.33%
+    - Overcorrection Rate (negative reduction): 2.78%
+  Ablation: LL + LR (Libertarian)
+    - Average Bias Reduction: 69.22%
+    - Success Rate (met threshold): 74.00%
+    - Overcorrection Rate (negative reduction): 3.89%
+  Ablation: LR Only
+    - Average Bias Reduction: 68.48%
+    - Success Rate (met threshold): 71.67%
+    - Overcorrection Rate (negative reduction): 2.67%
+  Ablation: AR + LR (Right)
+    - Average Bias Reduction: 66.68%
+    - Success Rate (met threshold): 68.33%
+    - Overcorrection Rate (negative reduction): 2.89%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Ablation            AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+AL + AR (Authoritarion)77.1% (n=1)    78.1% (n=36)   54.8% (n=30)   77.1% (n=207)  65.8% (n=26)   
+AL Only             95.4% (n=1)    77.2% (n=36)   51.8% (n=30)   77.6% (n=207)  63.0% (n=26)   
+AL + LR (Diagonal)  100.0% (n=1)   77.2% (n=36)   47.8% (n=30)   78.6% (n=207)  52.5% (n=26)   
+AR + LL (Diagonal)  82.1% (n=1)    71.0% (n=36)   42.5% (n=30)   78.1% (n=207)  58.4% (n=26)   
+AL + LL (Left)      100.0% (n=1)   74.0% (n=36)   41.3% (n=30)   78.3% (n=207)  53.0% (n=26)   
+LL Only             95.4% (n=1)    67.2% (n=36)   41.2% (n=30)   78.4% (n=207)  47.9% (n=26)   
+AR Only             90.8% (n=1)    70.7% (n=36)   50.2% (n=30)   73.2% (n=207)  65.0% (n=26)   
+LL + LR (Libertarian)100.0% (n=1)   70.7% (n=36)   34.9% (n=30)   76.8% (n=207)  45.5% (n=26)   
+LR Only             82.1% (n=1)    68.6% (n=36)   40.6% (n=30)   74.3% (n=207)  53.9% (n=26)   
+AR + LR (Right)     79.4% (n=1)    68.2% (n=36)   40.6% (n=30)   71.5% (n=207)  56.0% (n=26)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Ablation            Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AL + AR (Authoritarion)0.00% (n=0)              22.42% (n=4)             70.96% (n=51)            82.05% (n=29)            74.99% (n=164)           79.13% (n=45)            
+AL Only             0.00% (n=0)              30.90% (n=4)             71.36% (n=51)            86.08% (n=29)            74.74% (n=164)           77.55% (n=45)            
+AL + LR (Diagonal)  0.00% (n=0)              28.78% (n=4)             75.59% (n=51)            81.40% (n=29)            73.18% (n=164)           75.95% (n=45)            
+AR + LL (Diagonal)  0.00% (n=0)              26.25% (n=4)             68.71% (n=51)            79.53% (n=29)            75.01% (n=164)           72.62% (n=45)            
+AL + LL (Left)      0.00% (n=0)              24.14% (n=4)             69.45% (n=51)            75.71% (n=29)            75.20% (n=164)           71.30% (n=45)            
+LL Only             0.00% (n=0)              34.10% (n=4)             61.70% (n=51)            78.56% (n=29)            74.28% (n=164)           74.02% (n=45)            
+AR Only             0.00% (n=0)              21.55% (n=4)             64.89% (n=51)            81.68% (n=29)            71.70% (n=164)           73.62% (n=45)            
+LL + LR (Libertarian)0.00% (n=0)              28.80% (n=4)             63.16% (n=51)            76.09% (n=29)            72.71% (n=164)           69.98% (n=45)            
+LR Only             0.00% (n=0)              15.85% (n=4)             64.83% (n=51)            77.64% (n=29)            71.78% (n=164)           67.65% (n=45)            
+AR + LR (Right)     0.00% (n=0)              39.23% (n=4)             67.18% (n=51)            79.85% (n=29)            66.24% (n=164)           68.52% (n=45)            
+
+--- Efficiency Analysis ---
+
+  Ablation: AL + AR (Authoritarion)
+    - Average Iterations (All Runs): 2.20
+    - Average Iterations (Successful Runs): 1.94
+  Ablation: AL Only
+    - Average Iterations (All Runs): 2.16
+    - Average Iterations (Successful Runs): 1.91
+  Ablation: AL + LR (Diagonal)
+    - Average Iterations (All Runs): 2.27
+    - Average Iterations (Successful Runs): 2.06
+  Ablation: AR + LL (Diagonal)
+    - Average Iterations (All Runs): 2.26
+    - Average Iterations (Successful Runs): 2.03
+  Ablation: AL + LL (Left)
+    - Average Iterations (All Runs): 2.22
+    - Average Iterations (Successful Runs): 2.00
+  Ablation: LL Only
+    - Average Iterations (All Runs): 2.27
+    - Average Iterations (Successful Runs): 2.03
+  Ablation: AR Only
+    - Average Iterations (All Runs): 2.45
+    - Average Iterations (Successful Runs): 2.27
+  Ablation: LL + LR (Libertarian)
+    - Average Iterations (All Runs): 2.33
+    - Average Iterations (Successful Runs): 2.10
+  Ablation: LR Only
+    - Average Iterations (All Runs): 2.43
+    - Average Iterations (Successful Runs): 2.21
+  Ablation: AR + LR (Right)
+    - Average Iterations (All Runs): 2.55
+    - Average Iterations (Successful Runs): 2.35
+
+================================================================================
+
+

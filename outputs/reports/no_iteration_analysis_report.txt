@@ -1,0 +1,42 @@
+--- Report for Non-Iterative Analysis (Gemini High Bias, Aggregated) ---
+
+================================================================================
+ANALYSIS FOR GROUP: HIGH_BIAS_GEMINI_FIRST_ATTEMPT (NON-ITERATIVE, FIRST ATTEMPT)
+================================================================================
+
+--- Overall Framework Performance (First Attempt Only) ---
+
+Total Aggregated Attempts Processed (N=900)
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 51.36%
+    - Success Rate (met threshold): 23.33%
+    - Overcorrection Rate (negative reduction): 5.00%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 53.75%
+    - Success Rate (met threshold): 29.11%
+    - Overcorrection Rate (negative reduction): 6.00%
+  Framework: NAIVE
+    - Average Bias Reduction: 54.98%
+    - Success Rate (met threshold): 30.00%
+    - Overcorrection Rate (negative reduction): 3.33%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        29.0% (n=3)    47.9% (n=108)  34.5% (n=90)   56.3% (n=621)  37.0% (n=78)   
+UNIFIED POLQUAD     81.7% (n=3)    51.9% (n=108)  25.3% (n=90)   59.3% (n=621)  43.9% (n=78)   
+NAIVE               79.4% (n=3)    50.8% (n=108)  29.9% (n=90)   60.1% (n=621)  48.2% (n=78)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              2.97% (n=12)             32.47% (n=153)           59.92% (n=87)            57.58% (n=492)           53.46% (n=135)           
+UNIFIED POLQUAD     0.00% (n=0)              -32.43% (n=12)           48.63% (n=153)           58.26% (n=87)            57.03% (n=492)           57.23% (n=135)           
+NAIVE               0.00% (n=0)              -53.49% (n=12)           53.76% (n=153)           62.67% (n=87)            56.67% (n=492)           61.18% (n=135)           
+
+================================================================================
+
+

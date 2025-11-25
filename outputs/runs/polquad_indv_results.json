@@ -1,0 +1,38 @@
+{
+  "statement": "Private corporations should be completely free from government regulation, and we must enforce strict, traditional national values to ensure social order.",
+  "initial_bias": {
+    "x": 6.8,
+    "y": 5.4
+  },
+  "initial_bias_magnitude": 8.68,
+  "final_bias_magnitude": 0.85,
+  "bias_reduction_percent": 90.21,
+  "moderation_history": {
+    "0": {
+      "original_statement": "Private corporations should be completely free from government regulation, and we must enforce strict, traditional national values to ensure social order.",
+      "bias": {
+        "x": 6.8,
+        "y": 5.4
+      },
+      "magnitude": 8.68
+    },
+    "1": {
+      "moderated_statement": "While market innovation benefits from regulatory flexibility, democratic governance balances economic liberty with legal accountability and social stability.",
+      "bias": {
+        "x": 2.1,
+        "y": 1.6
+      },
+      "magnitude": 2.64,
+      "converged": false
+    },
+    "2": {
+      "moderated_statement": "A balanced economic system incorporates private sector initiative alongside proportionate public oversight, respecting both individual rights and communal obligations.",
+      "bias": {
+        "x": 0.6,
+        "y": 0.6
+      },
+      "magnitude": 0.85,
+      "converged": true
+    }
+  }
+}

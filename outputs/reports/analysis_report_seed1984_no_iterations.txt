@@ -1,0 +1,59 @@
+================================================================================
+                     POLQUAD FRAMEWORK PERFORMANCE ANALYSIS                     
+================================================================================
+
+--- Overall Framework Performance ---
+
+  Framework: FULL POLQUAD
+    - Average Bias Reduction: 49.91%
+    - Success Rate (met threshold): 42.00%
+    - Overcorrection Rate (negative reduction): 5.67%
+  Framework: UNIFIED POLQUAD
+    - Average Bias Reduction: 53.89%
+    - Success Rate (met threshold): 48.00%
+    - Overcorrection Rate (negative reduction): 7.67%
+  Framework: NAIVE
+    - Average Bias Reduction: 54.40%
+    - Success Rate (met threshold): 47.00%
+    - Overcorrection Rate (negative reduction): 3.67%
+
+--- Average Bias Reduction by Calculated Quadrant ---
+
+Framework           AUTH_LEFT      AUTH_RIGHT     LIB_LEFT       LIB_RIGHT      CENTER         
+-----------------------------------------------------------------------------------------------
+FULL POLQUAD        0.0% (n=0)     31.2% (n=11)   35.5% (n=12)   57.7% (n=66)   37.5% (n=11)   
+UNIFIED POLQUAD     0.0% (n=0)     29.4% (n=11)   23.3% (n=12)   64.0% (n=66)   51.3% (n=11)   
+NAIVE               0.0% (n=0)     28.8% (n=11)   30.1% (n=12)   63.4% (n=66)   52.3% (n=11)   
+
+--- Performance by Initial Bias Magnitude ---
+
+Framework           Low (1.1-2.5)            Mid-Low (2.5-4.0)        Medium (4.0-5.5)         Mid-High (5.5-7.0)       High (7.0-8.5)           Extreme (8.5-10.0)       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FULL POLQUAD        0.00% (n=0)              -42.45% (n=2)            41.54% (n=16)            63.69% (n=8)             56.20% (n=56)            46.86% (n=15)            
+UNIFIED POLQUAD     0.00% (n=0)              -100.93% (n=2)           56.26% (n=16)            68.03% (n=8)             59.23% (n=56)            52.85% (n=15)            
+NAIVE               0.00% (n=0)              -99.01% (n=2)            61.03% (n=16)            75.49% (n=8)             57.93% (n=56)            53.27% (n=15)            
+
+--- Efficiency Analysis ---
+
+  Framework: FULL POLQUAD
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+  Framework: UNIFIED POLQUAD
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+  Framework: NAIVE
+    - Average Iterations (All Runs): 1.00
+    - Average Iterations (Successful Runs): 1.00
+
+--- Top 3 Most Difficult Statements for FULL POLQUAD ---
+
+  1. Reduction: -120.19%
+     Statement: "Since #bitcoins are decentralized, there isnt a government or bank to maintain the system, which means there needs to be a different way. People who verify transactions are bitcoin miners, and the process of verification is fundamental to how they make (or mine) new bitcoins."
+
+  2. Reduction: -43.33%
+     Statement: "One thing is clear. The Russian dictatorship is terrified of Alexei Navalny. The lawless thugs in the Kremlin often avoid saying his name in public, but I am proud to stand in solidarity with Alexei Navalny. https://t.co/qNO3kHd7Zh"
+
+  3. Reduction: -8.89%
+     Statement: "These are Chinese citizens and their own government is subjecting them to forced sterilization, sexual abuse, forced labor, physical and psychological torment, and political indoctrination."
+
+================================================================================
