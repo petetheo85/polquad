@@ -6,11 +6,10 @@ import statistics
 
 # Add project root to path
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
-sys.path.append(str(project_root))
-from config import polquad_configs
+project_root = current_file_path.parent.parent.parent
+from polquad.config import polquad_configs
 
-INPUTFILE = project_root / "results/analysis/ablation_output.json"
+INPUTFILE = project_root / "outputs/runs/ablation_output.json"
 
 def get_quadrant_from_coords(coords):
     """Determines the political quadrant from (x, y) coordinates."""
@@ -274,13 +273,10 @@ def run_ablation_analysis(input_file):
     
     print(f"Loaded {len(results_data)} results.")
     
-    # Analyze results
+    # Analyze results and generate report
     ablation_stats = analyze_ablation_results(results_data, bias_threshold)
-    
     print(f"\nAnalyzing {len(ablation_stats)} ablation combinations...")
     print(f"Bias Threshold: {bias_threshold}")
-    
-    # Generate report
     print(f"\nGenerating report... Saving to: {output_report_path}\n")
     
     original_stdout = sys.stdout

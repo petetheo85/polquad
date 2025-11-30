@@ -6,18 +6,17 @@ import statistics
 
 # Add project root to path
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
-sys.path.append(str(project_root))
-from config import polquad_configs
+project_root = current_file_path.parent.parent.parent
+from polquad.config import polquad_configs
 
 # Input files
 INPUT_FILES = [
-    project_root / "results/outputs/ablation_output_seed42_100_high_bias_gemini.json",
-    project_root / "results/outputs/ablation_output_seed1337_100_high_bias_gemini.json",
-    project_root / "results/outputs/ablation_output_seed1984_100_high_bias_gemini.json"
+    project_root / "outputs/runs/ablation_output_seed42_100_high_bias_gemini.json",
+    project_root / "outputs/runs/ablation_output_seed1337_100_high_bias_gemini.json",
+    project_root / "outputs/runs/ablation_output_seed1984_100_high_bias_gemini.json"
 ]
 
-OUTPUT_REPORT = project_root / "results/analysis/ablation_aggregate.txt"
+OUTPUT_REPORT = project_root / "outputs/reports/ablation_aggregate.txt"
 
 
 def get_quadrant_from_coords(coords):
@@ -77,7 +76,7 @@ def aggregate_ablation_results(all_results_by_seed, bias_threshold, bias_bins):
         "all_iterations": [],
         "successful_iterations": [],
         "by_quadrant": defaultdict(list),
-        "by_initial_bias": defaultdict(list), # This is the target dictionary
+        "by_initial_bias": defaultdict(list), 
         "converged": 0,
         "overcorrections": 0,
         "num_statements": 0
@@ -98,13 +97,12 @@ def aggregate_ablation_results(all_results_by_seed, bias_threshold, bias_bins):
             if ablation_name == "full_polquad":
                 continue
             
-            # --- START: MISSING BINNING LOGIC ---
+            # Create bins
             current_bias_bin_label = None
             for low, high, label in bias_bins:
                 if low <= initial_mag < high:
                     current_bias_bin_label = label
                     break
-            # --- END: MISSING BINNING LOGIC ---
 
             ablation_stats[ablation_name]["num_statements"] += 1
             calculated_quadrant = get_quadrant_from_coords(initial_coords)
@@ -161,7 +159,7 @@ def generate_report(ablation_stats, bias_bins):
         reverse=True
     )
     
-    # --- Overall Ablation Performance (Report Logic Omitted for brevity, assumed correct) ---
+    # --- Overall Ablation Performance ---
     for ablation_name, stats in sorted_ablations:
         avg_reduction = statistics.mean(stats["all_reductions"]) if stats["all_reductions"] else 0
         success_rate = (stats["converged"] / stats["num_statements"] * 100) if stats["num_statements"] > 0 else 0
@@ -194,7 +192,7 @@ def generate_report(ablation_stats, bias_bins):
         
         print(row_str)
     
-    # --- Performance by Initial Bias Magnitude (CORRECTED LOGIC) ---
+    # --- Performance by Initial Bias Magnitude ---
     print("\n--- Performance by Initial Bias Magnitude ---\n")
     
     # Extract labels from the passed-in list of tuples
@@ -208,7 +206,6 @@ def generate_report(ablation_stats, bias_bins):
         row_str = f"{display_name:<20}"
         
         for bin_label in bias_bins_labels:
-            # This is now correctly populated in the aggregation function
             reductions_in_bin = stats["by_initial_bias"][bin_label] 
             count = len(reductions_in_bin)
             avg_reduction = statistics.mean(reductions_in_bin) if reductions_in_bin else 0
@@ -217,7 +214,7 @@ def generate_report(ablation_stats, bias_bins):
         
         print(row_str)
     
-    # --- Efficiency Analysis (Report Logic Omitted for brevity, assumed correct) ---
+    # --- Efficiency Analysis ---
     print("\n--- Efficiency Analysis ---\n")
     
     for ablation_name, stats in sorted_ablations:
@@ -262,12 +259,9 @@ def main():
     print(f"Bias Threshold: {bias_threshold}")
     print("\nAggregating results across seeds (excluding Full POLQUAD)...\n")
     
-    # Analyze results - Pass the bias_bins_ranges
+    # Analyze results and generate report
     ablation_stats = aggregate_ablation_results(all_results_by_seed, bias_threshold, bias_bins_ranges)
-    
     print(f"Analyzing {len(ablation_stats)} ablation combinations...")
-    
-    # Generate report - Pass the bias_bins_ranges
     print(f"\nGenerating report... Saving to: {OUTPUT_REPORT}\n")
     
     original_stdout = sys.stdout

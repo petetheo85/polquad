@@ -1,7 +1,10 @@
 import json
 import statistics
+from pathlib import Path
 from tqdm import tqdm
-from config import polquad_configs
+project_root = Path(__file__).resolve().parent.parent
+
+from polquad.config import polquad_configs
 from polquad.utils.formatter import (
     print_startup_screen,
     print_main_header,
@@ -10,7 +13,7 @@ from polquad.utils.formatter import (
     print_error,
     print_summary
 )
-from polquad.utils.gemini import GeminiClient
+from polquad.utils.gemini_client import GeminiClient
 from polquad.utils.bias_calculator import BiasCalculator
 from polquad.utils.data_helper import create_dataframe
 from polquad.frameworks.polquad import PolquadFramework
@@ -23,7 +26,7 @@ DATASET_PATH = polquad_configs['dataset_path']
 DATASET_SOURCE_TYPE = polquad_configs['dataset_source_type']
 BIAS_THRESHOLD = polquad_configs['bias_threshold']
 NUMBER_OF_RUNS = polquad_configs['num_runs']
-OUTPUT_FILE_PATH = 'results/outputs/ablation_output.json'
+OUTPUT_FILE_PATH = 'outputs/runs/ablation_output.json'
 
 # Define ablation combinations
 ABLATION_COMBINATIONS = {

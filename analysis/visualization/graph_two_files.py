@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 
 unified_json_path = project_root / "results" / "unified_polquad_results.json"
 full_json_path = project_root / "results" / "full_polquad_results.json"

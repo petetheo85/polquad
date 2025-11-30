@@ -6,9 +6,8 @@ import statistics
 
 # Add project root to path to allow config import
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
-sys.path.append(str(project_root))
-from config import polquad_configs
+project_root = current_file_path.parent.parent.parent
+from polquad.config import polquad_configs
 
 def get_quadrant_from_coords(coords):
     """Determines the political quadrant from (x, y) coordinates."""
@@ -31,8 +30,8 @@ def analyze_results():
     Loads the consolidated framework output and saves a detailed
     statistical summary to a text file.
     """
-    data_file_path = project_root / "results/outputs/framework_output.json"
-    output_report_path = project_root / "results/analysis/analysis_report.txt"
+    data_file_path = project_root / "outputs/runs/framework_output.json"
+    output_report_path = project_root / "outputs/reports/analysis_report.txt"
     bias_threshold = polquad_configs.get('bias_threshold', 2.5)
     
     # Define bins for analyzing performance

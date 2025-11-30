@@ -5,7 +5,7 @@ from collections import defaultdict
 
 # Add project root to path to allow config import
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 sys.path.append(str(project_root))
 
 def get_quadrant(x: float, y: float) -> str:
@@ -24,7 +24,7 @@ def analyze_mismatches():
     Loads framework output, creates a confusion matrix, and flags
     each misclassified statement.
     """
-    data_file_path = project_root / "results" / "outputs" / "framework_output.json"
+    data_file_path = project_root / "outputs" / "runs" / "framework_output.json"
     
     print(f"Loading data from: {data_file_path}")
     try:

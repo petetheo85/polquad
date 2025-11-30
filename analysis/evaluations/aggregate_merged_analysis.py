@@ -3,13 +3,11 @@ import sys
 from pathlib import Path
 from collections import defaultdict
 import statistics
-import re # Import regex for flexible filename parsing
 
 # Add project root to path
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
-sys.path.append(str(project_root))
-from config import polquad_configs
+project_root = current_file_path.parent.parent.parent
+from polquad.config import polquad_configs
 
 # --- Keep your get_quadrant_from_coords function ---
 def get_quadrant_from_coords(coords):
@@ -124,7 +122,7 @@ def generate_report_for_group(data_items, group_title, bias_threshold, bias_bins
     if total_statements == 0:
         print("  No data found for this group meeting the bias threshold.\n")
         print("="*80 + "\n\n")
-        return # Skip rest of report if no data
+        return 
 
     for name, stats in framework_stats.items():
         avg_reduction = statistics.mean(stats["all_reductions"]) if stats["all_reductions"] else 0
@@ -185,11 +183,11 @@ def run_aggregate_analysis():
     groups them by experimental condition, and saves one
     consolidated report.
     """
-    data_dir = project_root / "results/outputs"
-    output_report_path = project_root / "results/analysis/analysis_report_aggregate_merged.txt"
+    data_dir = project_root / "outputs/runs"
+    output_report_path = project_root / "outputs/reports/analysis_report_aggregate_merged.txt"
     bias_threshold = polquad_configs.get('bias_threshold', 2.5)
     
-    # Define your standard 6 bins here
+    # Define bins
     bias_bins = [
         (1.1, 2.5, "Low (1.1-2.5)"),
         (2.5, 4.0, "Mid-Low (2.5-4.0)"),
@@ -199,7 +197,7 @@ def run_aggregate_analysis():
         (8.5, 10.1, "Extreme (8.5-10.0)")
     ]
 
-    # 1. Discover files and group data
+    # Discover files and group data
     data_groups = defaultdict(list)
     print(f"Scanning for merged JSON files in: {data_dir}\n")
     
@@ -221,11 +219,11 @@ def run_aggregate_analysis():
 
     print(f"\nFound {len(data_groups)} experimental groups: {list(data_groups.keys())}")
 
-    # 2. Generate consolidated report
+    # Generate consolidated report
     print(f"\nGenerating aggregate report... Saving to: {output_report_path}")
     original_stdout = sys.stdout
     with open(output_report_path, 'w') as f:
-        sys.stdout = f  # Redirect stdout to the report file
+        sys.stdout = f
         
         # Sort groups for a consistent report order
         sorted_groups = sorted(data_groups.items(), key=lambda item: item[0])

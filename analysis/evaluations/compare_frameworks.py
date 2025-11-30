@@ -4,11 +4,11 @@ from collections import defaultdict
 from pathlib import Path
 
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 
-unified_json_path = project_root / "results" / "unified_polquad_results.json"
-full_json_path = project_root / "results" / "full_polquad_results.json"
-output_path = project_root / "results" / "framework_comparison_output.txt"
+unified_json_path = project_root / "outputs" / "runs" / "unified_polquad_results.json"
+full_json_path = project_root / "outputs" / "runs" / "full_polquad_results.json"
+output_path = project_root / "outputs" / "reports" / "framework_comparison_output.txt"
 
 def calculate_metrics(data, framework_name):
     """Calculates performance metrics per quadrant for a single framework's data."""
@@ -124,8 +124,6 @@ def generate_summary_table(full_metrics, unified_metrics, output_filename=output
     
     print(f"✅ Summary successfully written to {output_filename}")
 
-
-# --- Main Execution ---
 
 def main():
     # Load data from the provided JSON files

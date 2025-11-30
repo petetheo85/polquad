@@ -7,15 +7,14 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
-sys.path.append(str(project_root))
-from config import polquad_configs
+project_root = current_file_path.parent.parent.parent
+from polquad.config import polquad_configs
 
 def generate_graphs():
     """Loads the framework output and generates performance map."""
     current_file_path = Path(__file__).resolve()
-    project_root = current_file_path.parent.parent
-    data_file_path = project_root / "results/outputs/framework_output.json"
+    project_root = current_file_path.parent.parent.parent
+    data_file_path = project_root / "outputs/runs/framework_output.json"
     bias_threshold = polquad_configs['bias_threshold']
     
     print(f"Loading data from: {data_file_path}")
@@ -111,7 +110,7 @@ def generate_graphs():
     
     ax.grid(True, linestyle=':')
     plt.tight_layout()
-    plt.savefig(project_root / "results" / "graphs"/ "compass_performance.png")
+    plt.savefig(project_root / "outputs" / "figures" / "compass_performance.png")
     plt.show()
 
 if __name__ == '__main__':

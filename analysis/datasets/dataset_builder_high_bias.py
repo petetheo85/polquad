@@ -7,14 +7,12 @@ from tqdm import tqdm
 from datasets import load_dataset
 from google.genai import errors as genai_errors
 
-# Add project root to path to allow config/utils import
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent
-sys.path.append(str(project_root))
+project_root = current_file_path.parent.parent.parent
 
-from config import polquad_configs
-from src.polquad.utils.gemini import GeminiClient
-from src.polquad.utils.bias_calculator import BiasCalculator
+from polquad.config import polquad_configs
+from polquad.utils.gemini_client import GeminiClient
+from polquad.utils.bias_calculator import BiasCalculator
 
 # --- Configuration ---
 DATASET_NAME = "m-newhauser/senator-tweets"

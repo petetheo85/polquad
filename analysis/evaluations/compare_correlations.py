@@ -4,7 +4,7 @@ import numpy as np
 from pathlib import Path
 
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 
 def analyze_bias_correlation(file_path, framework_name):
     """

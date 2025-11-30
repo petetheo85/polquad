@@ -3,11 +3,12 @@ import matplotlib.patches as patches
 import numpy as np
 import json
 import statistics
-from matplotlib.lines import Line2D # Import for custom legend handles
+from matplotlib.lines import Line2D
+import sys
+from pathlib import Path
+project_root = Path(__file__).resolve().parent.parent
 
-# Assume these are available from your project structure
-# You might need to adjust the import path if these are not directly accessible
-from config import polquad_configs
+from polquad.config import polquad_configs
 from polquad.utils.formatter import (
     print_startup_screen,
     print_main_header,
@@ -16,15 +17,14 @@ from polquad.utils.formatter import (
     print_error,
     print_summary
 )
-from polquad.utils.gemini import GeminiClient
-from polquad.utils.chat_gpt import ChatGPTClient
-from polquad.utils.claude import ClaudeClient
+from polquad.utils.gemini_client import GeminiClient
+from polquad.utils.openai_client import ChatGPTClient
+from polquad.utils.claude_client import ClaudeClient
 from polquad.utils.bias_calculator import BiasCalculator
-from polquad.frameworks.polquad import PolquadFramework # Only Polquad for this plot
+from polquad.frameworks.polquad import PolquadFramework
 
 # --- Configuration (can be modified for testing) ---
 # Define a single statement for plotting
-# UPDATED with the new example, you can change this
 STATEMENT_FOR_PLOT = {
     "text": "Private corporations should be completely free from government regulation, and we must enforce strict, traditional national values to ensure social order.",
     "quadrant": "Authoritarian Right" # Optional: for your reference
@@ -36,7 +36,7 @@ NUMBER_OF_RUNS = 1
 # Set to "run" to run the analysis and save results
 # Set to "plot" to load results and create plots only
 MODE = "plot"  # Change to "plot" to skip analysis and just visualize
-RESULTS_FILE = "polquad_indv_results.json"
+RESULTS_FILE = project_root / "outputs/runs/polquad_indv_results.json"
 
 # --- Utility Functions ---
 def save_results_to_json(statement, history, initial_bias, initial_mag, final_bias_mag, bias_reduction, filename=RESULTS_FILE):
@@ -182,47 +182,40 @@ def plot_polquad_iteration_history(statement, history, filename="polquad_iterati
     
     # Create text box with statements at the bottom of the plot
     if statement_texts:
-        # Define vertical start position for text (in Axes coordinates)
-        start_y = -0.25 # Start below the x-axis
-        line_height_pixels = 20 # Estimate height per line
+        start_y = -0.25 
+        line_height_pixels = 20 
         
         # Calculate total height needed for text box
         total_text_height_pixels = 0
         text_lines_to_draw = []
         for label, stmt, color in statement_texts:
             text_line = f"{label}: {stmt}"
-            # Estimate wrapped lines
-            lines = 1 + (len(text_line) // 40) # Simple wrap estimate
+            lines = 1 + (len(text_line) // 40) 
             total_text_height_pixels += lines * line_height_pixels
             text_lines_to_draw.append((label, text_line, color, lines))
         
-        # Convert pixel height to figure fraction
         fig_height_pixels = fig.get_window_extent().height
-        total_text_height_fig_frac = (total_text_height_pixels / fig_height_pixels) + 0.05 # Add padding
+        total_text_height_fig_frac = (total_text_height_pixels / fig_height_pixels) + 0.05
         
-        # Adjust bottom margin
         plt.subplots_adjust(bottom=total_text_height_fig_frac + 0.05, top=0.95)
         
-        # --- Draw the Box ---
-        # We draw this first so text goes on top
+        # Draw the box
         rect = patches.Rectangle(
-            (0.01, 0.01), # x, y (in Figure coordinates)
-            0.98, # width
-            total_text_height_fig_frac - 0.02, # height
-            transform=fig.transFigure, # Use Figure coordinates
+            (0.01, 0.01), 
+            0.98, 
+            total_text_height_fig_frac - 0.02,
+            transform=fig.transFigure, 
             facecolor='wheat', 
             edgecolor='black',
             linewidth=1.5,
-            zorder=50 # zorder for box
+            zorder=50 
         )
         fig.patches.append(rect)
 
         # --- Draw the Text ---
-        # Start drawing text from the top of the box
-        current_y_fig_frac = total_text_height_fig_frac - 0.025 # Start near top of box
+        current_y_fig_frac = total_text_height_fig_frac - 0.02
         
         for label, text_line, color, num_lines in text_lines_to_draw:
-            # Draw the colored dot
             fig.text(0.035, current_y_fig_frac - 0.005, "●", 
                     transform=fig.transFigure, 
                     fontsize=16, 
@@ -230,7 +223,7 @@ def plot_polquad_iteration_history(statement, history, filename="polquad_iterati
                     ha='left', 
                     va='top',
                     fontweight='bold',
-                    zorder=51) # zorder > box zorder
+                    zorder=51) 
             
             # Draw the text line (with wrap)
             fig.text(0.07, current_y_fig_frac, text_line, 
@@ -239,14 +232,14 @@ def plot_polquad_iteration_history(statement, history, filename="polquad_iterati
                     verticalalignment='top', 
                     horizontalalignment='left', 
                     wrap=True,
-                    zorder=51) # zorder > box zorder
+                    zorder=51) 
             
             # Move Y down for next line
-            current_y_fig_frac -= 0.05 # Add small gap
+            current_y_fig_frac -= 0.05 
     
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight')
     print(f"Plot saved to {filename}")
-    plt.show()
+    plt.close(fig)
 
 # --- Main function to run the POLQUAD framework and then plot ---
 def run_analysis():
@@ -329,11 +322,12 @@ def plot_only():
         print(f"Loaded statement: {statement[:80]}...")
         print(f"Number of iterations: {len([k for k in history.keys() if k != 0])}")
         
-        # Create plot
+        # Create plot in outputs/figures/
+        output_plot_path = project_root / "outputs/figures/full_polquad_iteration_plot.png"
         plot_polquad_iteration_history(
             statement=statement,
             history=history,
-            filename="full_polquad_iteration_plot.png"
+            filename=str(output_plot_path)
         )
         
         print_main_header("PLOT COMPLETE")
@@ -353,7 +347,7 @@ def main():
     else:
         print(f"Invalid MODE: {MODE}. Set to 'run' or 'plot'.")
 
-# Helper function for quadrant labels (re-using from run_showcase.py)
+# Helper function for quadrant labels
 def get_quadrant_label(coords):
     """Classifies bias coordinates into a political quadrant."""
     try:

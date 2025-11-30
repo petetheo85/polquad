@@ -7,9 +7,9 @@ plt.style.use('seaborn-v0_8-paper')
 
 def create_output_directory():
     """Ensures the 'graphs' directory exists."""
-    if not os.path.exists('graphs'):
-        os.makedirs('graphs')
-    print("Graphs will be saved to the 'graphs/' directory.")
+    if not os.path.exists('outputs/figures'):
+        os.makedirs('outputs/figures', exist_ok=True)
+    print("Graphs will be saved to the 'outputs/figures/' directory.")
 
 def plot_simple_bar(data, title, filename, ylabel, color_map=None):
     """
@@ -130,7 +130,7 @@ def main():
     }
     plot_simple_bar(original_gemini_reduction_data,
                     'Overall Bias Reduction (Uncurated Dataset, n=747)',
-                    'graphs/original_gemini_reduction.png',
+                    'outputs/figures/original_gemini_reduction.png',
                     'Average Bias Reduction (%)',
                     color_map=framework_colors) # Pass the color map here
 
@@ -155,7 +155,7 @@ def main():
     }
     plot_grouped_bar(high_bias_reduction_data,
                      'Average Bias Reduction on High-Bias Dataset',
-                     'graphs/high_bias_reduction.png',
+                     'outputs/figures/high_bias_reduction.png',
                      'Average Bias Reduction (%)',
                      color_map=framework_colors)
     
@@ -180,7 +180,7 @@ def main():
     }
     plot_grouped_bar(high_bias_success_rate_data,
                      'Framework Success Rate on High-Bias Dataset',
-                     'graphs/high_bias_success_rate.png',
+                     'outputs/figures/high_bias_success_rate.png',
                      'Success Rate (%)',
                      color_map=framework_colors)
 

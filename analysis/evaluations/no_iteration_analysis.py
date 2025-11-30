@@ -8,11 +8,11 @@ import re
 # --- Environment Setup and Paths ---
 # Assume project_root is the directory containing the 'results' and 'analysis' folders.
 current_file_path = Path(__file__).resolve()
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 
 # Define locations based on your clarification
-OUTPUT_REPORT_PATH = project_root / "results/analysis/no_iteration_analysis_report.txt"
-DATA_INPUT_DIR = project_root / "results/outputs"
+OUTPUT_REPORT_PATH = project_root / "outputs/reports/no_iteration_analysis_report.txt"
+DATA_INPUT_DIR = project_root / "outputs/runs"
 
 # --- Configuration (Based on paper standards) ---
 class Configs:

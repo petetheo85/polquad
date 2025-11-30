@@ -7,9 +7,9 @@ plt.style.use('seaborn-v0_8-paper')
 
 def create_output_directory():
     """Ensures the 'graphs' directory exists."""
-    if not os.path.exists('graphs'):
-        os.makedirs('graphs')
-    print("Graphs will be saved to the 'graphs/' directory.")
+    if not os.path.exists('outputs/figures'):
+        os.makedirs('outputs/figures', exist_ok=True)
+    print("Graphs will be saved to the 'outputs/figures/' directory.")
 
 def plot_success_rate(data, title, filename):
     """
@@ -147,7 +147,7 @@ def main():
     }
     plot_success_rate(success_rate_data, 
                       'Framework Success Rate on High-Bias Dataset', 
-                      'graphs/high_bias_success_rate.png')
+                      'outputs/figures/high_bias_success_rate.png')
 
     # --- Data for Graph 2: Efficiency ---
     # Source: HIGH_BIAS_* sections, "Average Iterations (Successful Runs)"
@@ -170,7 +170,7 @@ def main():
     }
     plot_efficiency(efficiency_data, 
                     'Framework Efficiency on High-Bias Dataset (Avg. Iterations per Success)', 
-                    'graphs/fig2_efficiency.png')
+                    'outputs/figures/fig2_efficiency.png')
 
     # --- Data for Graph 3: Reduction vs. Bias ---
     # Source: HIGH_BIAS_OPENAI section, "Performance by Initial Bias Magnitude"
@@ -188,7 +188,7 @@ def main():
     
     plot_reduction_by_bias(df_reduction, 
                            'Bias Reduction vs. Initial Bias (OpenAI, n=98)', 
-                           'graphs/fig3_reduction_vs_bias.png')
+                           'outputs/figures/fig3_reduction_vs_bias.png')
 
 if __name__ == '__main__':
     main()
