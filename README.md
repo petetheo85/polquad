@@ -1,4 +1,4 @@
-# POLQUAD: Multi-Agent Political Neutralization & Cognitive Guardrail Framework
+# POLQUAD: Computational Processing of Political Bias Using AI Agents
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Tests: Passing](https://img.shields.io/badge/tests-11%20passed-brightgreen.svg)]()
@@ -6,7 +6,12 @@
 [![Guardrails: Bias Mitigation](https://img.shields.io/badge/Guardrails-Bias%20Mitigation-green.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
-**POLQUAD** is a research-grade, multi-agent AI system designed to detect, calibrate, and neutralize socio-political bias in natural language. Developed as research submitted to *IEEE Transactions on Computational Social Systems (TCSS)*, POLQUAD moves beyond oversimplified one-dimensional (Left/Right) classification by framing political discourse across a **continuous 2-dimensional coordinate space** (Economic Left/Right $\times$ Social Authoritarian/Libertarian). 
+> **Official Implementation** for the paper:  
+> **"Computational Processing of Political Bias Using AI Agents"**  
+> *Submitted to IEEE Transactions on Computational Social Systems (TCSS), December 2025.*  
+> **Authors**: Manoj P. Vijayakumar, Peter Theodoracopoulos, Vijay K. Madisetti (Georgia Institute of Technology)
+
+**POLQUAD** is a research-grade, multi-agent AI system designed to detect, calibrate, and neutralize socio-political bias in natural language. Moving beyond oversimplified one-dimensional (Left/Right) classification, POLQUAD frames political discourse across a **continuous 2-dimensional coordinate space** (Economic Left/Right $\times$ Social Authoritarian/Libertarian). 
 
 Using an adversarial multi-agent debate and consensus synthesis architecture, POLQUAD guides biased text toward an objective, apolitical centroid $(0, 0)$ without flattening semantic nuance or stripping core context.
 

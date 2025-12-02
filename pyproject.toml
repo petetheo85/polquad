@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "polquad"
 version = "0.1.0"
-description = "Multi-Agent Political Neutralization and Latent Bias Mitigation Framework"
+description = "Computational Processing of Political Bias Using AI Agents (IEEE TCSS 2025)"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-    { name = "Peter Theodoropoulos" }
+    { name = "Peter Theodoracopoulos" }
 ]
 keywords = [
     "multi-agent",
