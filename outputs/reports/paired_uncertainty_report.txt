@@ -1,0 +1,348 @@
+==========================================================================================
+            PAIRED STATISTICAL UNCERTAINTY ESTIMATES FOR FRAMEWORK DIFFERENCES            
+          Recommendation 4: Sections IV-B & IV-C (Table III Paired Significance)          
+==========================================================================================
+
+
+==========================================================================================
+                   DATASET TESTBED: CLAUDE HIGH-BIAS (TABLE III, N=100)                   
+==========================================================================================
+
+--- Comparison: Full POLQUAD vs Unified POLQUAD ---
+Sample size (n): 100
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 60.00% (60/100)
+      - Unified Polquad: 59.00% (59/100)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 48
+          * Pass A, Fail B (Discordant b): 12
+          * Fail A, Pass B (Discordant c): 11
+          * Both Failed (Fail, Fail):     29
+      - Paired Difference (A - B): +1.00 percentage points
+      - McNemar's Exact Test p-value: 1.0000e+00 (p = 1.0000)
+      - McNemar with Continuity Correction: chi2 = 0.0000, p = 1.0000e+00
+      - 95% CI (Wald Paired): [-8.40%, +10.40%] (SE = 4.79%)
+      - 95% CI (Wald with Continuity Correction): [-9.40%, +11.40%]
+      - 95% CI (Newcombe / Wilson Score Paired): [-8.26%, +10.23%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 76.45%
+      - Unified Polquad Mean: 73.30%
+      - Paired Mean Difference (Delta = A - B): +3.15%
+      - Standard Error (SE): 1.72%  (SD of differences = 17.16%)
+      - 95% CI (Paired t-interval, df=99): [-0.25%, +6.56%]
+      - Paired t-test: t = 1.8365, df = 99, p-value = 6.9278e-02 (p = 0.0693)
+      - Wilcoxon Signed-Rank Test: W = 1615.0, p-value = 1.1288e-01 (p = 0.1129)
+
+--- Comparison: Full POLQUAD vs Iterative Naive ---
+Sample size (n): 100
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 60.00% (60/100)
+      - Naive: 39.00% (39/100)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 30
+          * Pass A, Fail B (Discordant b): 30
+          * Fail A, Pass B (Discordant c): 9
+          * Both Failed (Fail, Fail):     31
+      - Paired Difference (A - B): +21.00 percentage points
+      - McNemar's Exact Test p-value: 1.0650e-03 (p = 0.0011)
+      - McNemar with Continuity Correction: chi2 = 10.2564, p = 1.3621e-03
+      - 95% CI (Wald Paired): [+9.47%, +32.53%] (SE = 5.88%)
+      - 95% CI (Wald with Continuity Correction): [+8.47%, +33.53%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+9.21%, +31.85%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 76.45%
+      - Naive Mean: 65.20%
+      - Paired Mean Difference (Delta = A - B): +11.26%
+      - Standard Error (SE): 2.31%  (SD of differences = 23.09%)
+      - 95% CI (Paired t-interval, df=99): [+6.68%, +15.84%]
+      - Paired t-test: t = 4.8757, df = 99, p-value = 4.1363e-06 (p = 0.0000)
+      - Wilcoxon Signed-Rank Test: W = 987.0, p-value = 1.5911e-06 (p = 0.0000)
+
+--- Comparison: Unified POLQUAD vs Iterative Naive ---
+Sample size (n): 100
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Unified Polquad: 59.00% (59/100)
+      - Naive: 39.00% (39/100)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 33
+          * Pass A, Fail B (Discordant b): 26
+          * Fail A, Pass B (Discordant c): 6
+          * Both Failed (Fail, Fail):     35
+      - Paired Difference (A - B): +20.00 percentage points
+      - McNemar's Exact Test p-value: 5.3505e-04 (p = 0.0005)
+      - McNemar with Continuity Correction: chi2 = 11.2812, p = 7.8294e-04
+      - 95% CI (Wald Paired): [+9.63%, +30.37%] (SE = 5.29%)
+      - 95% CI (Wald with Continuity Correction): [+8.63%, +31.37%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+9.42%, +29.79%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Unified Polquad Mean: 73.30%
+      - Naive Mean: 65.20%
+      - Paired Mean Difference (Delta = A - B): +8.11%
+      - Standard Error (SE): 1.90%  (SD of differences = 19.04%)
+      - 95% CI (Paired t-interval, df=99): [+4.33%, +11.89%]
+      - Paired t-test: t = 4.2584, df = 99, p-value = 4.6912e-05 (p = 0.0000)
+      - Wilcoxon Signed-Rank Test: W = 1084.0, p-value = 1.4849e-05 (p = 0.0000)
+
+
+==========================================================================================
+                   DATASET TESTBED: OPENAI HIGH-BIAS (TABLE III, N=98)                    
+==========================================================================================
+
+--- Comparison: Full POLQUAD vs Unified POLQUAD ---
+Sample size (n): 98
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 76.53% (75/98)
+      - Unified Polquad: 43.88% (43/98)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 37
+          * Pass A, Fail B (Discordant b): 38
+          * Fail A, Pass B (Discordant c): 6
+          * Both Failed (Fail, Fail):     17
+      - Paired Difference (A - B): +32.65 percentage points
+      - McNemar's Exact Test p-value: 9.4304e-07 (p = 0.0000)
+      - McNemar with Continuity Correction: chi2 = 21.8409, p = 2.9622e-06
+      - 95% CI (Wald Paired): [+21.07%, +44.24%] (SE = 5.91%)
+      - 95% CI (Wald with Continuity Correction): [+20.05%, +45.26%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+20.51%, +43.35%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 76.66%
+      - Unified Polquad Mean: 41.93%
+      - Paired Mean Difference (Delta = A - B): +34.73%
+      - Standard Error (SE): 4.16%  (SD of differences = 41.13%)
+      - 95% CI (Paired t-interval, df=97): [+26.48%, +42.98%]
+      - Paired t-test: t = 8.3588, df = 97, p-value = 4.6119e-13 (p = 0.0000)
+      - Wilcoxon Signed-Rank Test: W = 482.0, p-value = 6.6966e-11 (p = 0.0000)
+
+--- Comparison: Full POLQUAD vs Iterative Naive ---
+Sample size (n): 98
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 76.53% (75/98)
+      - Naive: 30.61% (30/98)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 24
+          * Pass A, Fail B (Discordant b): 51
+          * Fail A, Pass B (Discordant c): 6
+          * Both Failed (Fail, Fail):     17
+      - Paired Difference (A - B): +45.92 percentage points
+      - McNemar's Exact Test p-value: 5.6762e-10 (p = 0.0000)
+      - McNemar with Continuity Correction: chi2 = 33.9649, p = 5.6115e-09
+      - 95% CI (Wald Paired): [+33.86%, +57.97%] (SE = 6.15%)
+      - 95% CI (Wald with Continuity Correction): [+32.84%, +58.99%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+32.85%, +56.63%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 76.66%
+      - Naive Mean: 32.67%
+      - Paired Mean Difference (Delta = A - B): +43.99%
+      - Standard Error (SE): 4.28%  (SD of differences = 42.38%)
+      - 95% CI (Paired t-interval, df=97): [+35.49%, +52.48%]
+      - Paired t-test: t = 10.2750, df = 97, p-value = 0.0000e+00 (p = 0.0000)
+      - Wilcoxon Signed-Rank Test: W = 275.0, p-value = 1.5611e-13 (p = 0.0000)
+
+--- Comparison: Unified POLQUAD vs Iterative Naive ---
+Sample size (n): 98
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Unified Polquad: 43.88% (43/98)
+      - Naive: 30.61% (30/98)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 28
+          * Pass A, Fail B (Discordant b): 15
+          * Fail A, Pass B (Discordant c): 2
+          * Both Failed (Fail, Fail):     53
+      - Paired Difference (A - B): +13.27 percentage points
+      - McNemar's Exact Test p-value: 2.3499e-03 (p = 0.0023)
+      - McNemar with Continuity Correction: chi2 = 8.4706, p = 3.6093e-03
+      - 95% CI (Wald Paired): [+5.45%, +21.08%] (SE = 3.99%)
+      - 95% CI (Wald with Continuity Correction): [+4.43%, +22.10%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+5.40%, +20.86%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Unified Polquad Mean: 41.93%
+      - Naive Mean: 32.67%
+      - Paired Mean Difference (Delta = A - B): +9.25%
+      - Standard Error (SE): 2.28%  (SD of differences = 22.59%)
+      - 95% CI (Paired t-interval, df=97): [+4.72%, +13.78%]
+      - Paired t-test: t = 4.0544, df = 97, p-value = 1.0153e-04 (p = 0.0001)
+      - Wilcoxon Signed-Rank Test: W = 668.5, p-value = 1.7723e-04 (p = 0.0002)
+
+
+==========================================================================================
+                   DATASET TESTBED: GEMINI HIGH-BIAS (TABLE III, N=300)                   
+==========================================================================================
+
+--- Comparison: Full POLQUAD vs Unified POLQUAD ---
+Sample size (n): 300
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 80.00% (240/300)
+      - Unified Polquad: 69.00% (207/300)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 189
+          * Pass A, Fail B (Discordant b): 51
+          * Fail A, Pass B (Discordant c): 18
+          * Both Failed (Fail, Fail):     42
+      - Paired Difference (A - B): +11.00 percentage points
+      - McNemar's Exact Test p-value: 8.7687e-05 (p = 0.0001)
+      - McNemar with Continuity Correction: chi2 = 14.8406, p = 1.1699e-04
+      - 95% CI (Wald Paired): [+5.72%, +16.28%] (SE = 2.70%)
+      - 95% CI (Wald with Continuity Correction): [+5.38%, +16.62%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+5.70%, +16.27%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 77.75%
+      - Unified Polquad Mean: 71.59%
+      - Paired Mean Difference (Delta = A - B): +6.16%
+      - Standard Error (SE): 1.53%  (SD of differences = 26.43%)
+      - 95% CI (Paired t-interval, df=299): [+3.16%, +9.17%]
+      - Paired t-test: t = 4.0392, df = 299, p-value = 6.8236e-05 (p = 0.0001)
+      - Wilcoxon Signed-Rank Test: W = 9362.5, p-value = 7.7608e-08 (p = 0.0000)
+
+--- Comparison: Full POLQUAD vs Iterative Naive ---
+Sample size (n): 300
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 80.00% (240/300)
+      - Naive: 62.00% (186/300)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 173
+          * Pass A, Fail B (Discordant b): 67
+          * Fail A, Pass B (Discordant c): 13
+          * Both Failed (Fail, Fail):     47
+      - Paired Difference (A - B): +18.00 percentage points
+      - McNemar's Exact Test p-value: 6.4151e-10 (p = 0.0000)
+      - McNemar with Continuity Correction: chi2 = 35.1125, p = 3.1120e-09
+      - 95% CI (Wald Paired): [+12.52%, +23.48%] (SE = 2.79%)
+      - 95% CI (Wald with Continuity Correction): [+12.19%, +23.81%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+12.47%, +23.41%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 77.75%
+      - Naive Mean: 68.28%
+      - Paired Mean Difference (Delta = A - B): +9.47%
+      - Standard Error (SE): 1.54%  (SD of differences = 26.72%)
+      - 95% CI (Paired t-interval, df=299): [+6.44%, +12.51%]
+      - Paired t-test: t = 6.1429, df = 299, p-value = 2.5795e-09 (p = 0.0000)
+      - Wilcoxon Signed-Rank Test: W = 8289.5, p-value = 2.4900e-11 (p = 0.0000)
+
+--- Comparison: Unified POLQUAD vs Iterative Naive ---
+Sample size (n): 300
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Unified Polquad: 69.00% (207/300)
+      - Naive: 62.00% (186/300)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 173
+          * Pass A, Fail B (Discordant b): 34
+          * Fail A, Pass B (Discordant c): 13
+          * Both Failed (Fail, Fail):     80
+      - Paired Difference (A - B): +7.00 percentage points
+      - McNemar's Exact Test p-value: 3.0877e-03 (p = 0.0031)
+      - McNemar with Continuity Correction: chi2 = 8.5106, p = 3.5308e-03
+      - 95% CI (Wald Paired): [+2.59%, +11.41%] (SE = 2.25%)
+      - 95% CI (Wald with Continuity Correction): [+2.26%, +11.74%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+2.58%, +11.38%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Unified Polquad Mean: 71.59%
+      - Naive Mean: 68.28%
+      - Paired Mean Difference (Delta = A - B): +3.31%
+      - Standard Error (SE): 1.08%  (SD of differences = 18.69%)
+      - 95% CI (Paired t-interval, df=299): [+1.19%, +5.43%]
+      - Paired t-test: t = 3.0672, df = 299, p-value = 2.3584e-03 (p = 0.0024)
+      - Wilcoxon Signed-Rank Test: W = 10156.0, p-value = 2.6949e-03 (p = 0.0027)
+
+
+==========================================================================================
+                   DATASET TESTBED: GEMINI UNCURATED (TABLE II, N=747)                    
+==========================================================================================
+
+--- Comparison: Full POLQUAD vs Unified POLQUAD ---
+Sample size (n): 747
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 78.18% (584/747)
+      - Unified Polquad: 69.34% (518/747)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 477
+          * Pass A, Fail B (Discordant b): 107
+          * Fail A, Pass B (Discordant c): 41
+          * Both Failed (Fail, Fail):     122
+      - Paired Difference (A - B): +8.84 percentage points
+      - McNemar's Exact Test p-value: 5.5645e-08 (p = 0.0000)
+      - McNemar with Continuity Correction: chi2 = 28.5473, p = 9.1437e-08
+      - 95% CI (Wald Paired): [+5.71%, +11.96%] (SE = 1.60%)
+      - 95% CI (Wald with Continuity Correction): [+5.57%, +12.10%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+5.70%, +11.96%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 67.34%
+      - Unified Polquad Mean: 64.25%
+      - Paired Mean Difference (Delta = A - B): +3.09%
+      - Standard Error (SE): 1.23%  (SD of differences = 33.50%)
+      - 95% CI (Paired t-interval, df=746): [+0.69%, +5.50%]
+      - Paired t-test: t = 2.5242, df = 746, p-value = 1.1804e-02 (p = 0.0118)
+      - Wilcoxon Signed-Rank Test: W = 73941.5, p-value = 8.8666e-03 (p = 0.0089)
+
+--- Comparison: Full POLQUAD vs Iterative Naive ---
+Sample size (n): 747
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Full Polquad: 78.18% (584/747)
+      - Naive: 68.94% (515/747)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 464
+          * Pass A, Fail B (Discordant b): 120
+          * Fail A, Pass B (Discordant c): 51
+          * Both Failed (Fail, Fail):     112
+      - Paired Difference (A - B): +9.24 percentage points
+      - McNemar's Exact Test p-value: 1.3628e-07 (p = 0.0000)
+      - McNemar with Continuity Correction: chi2 = 27.0409, p = 1.9919e-07
+      - 95% CI (Wald Paired): [+5.87%, +12.60%] (SE = 1.72%)
+      - 95% CI (Wald with Continuity Correction): [+5.74%, +12.74%]
+      - 95% CI (Newcombe / Wilson Score Paired): [+5.86%, +12.60%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Full Polquad Mean: 67.34%
+      - Naive Mean: 63.13%
+      - Paired Mean Difference (Delta = A - B): +4.21%
+      - Standard Error (SE): 1.23%  (SD of differences = 33.70%)
+      - 95% CI (Paired t-interval, df=746): [+1.79%, +6.63%]
+      - Paired t-test: t = 3.4154, df = 746, p-value = 6.7131e-04 (p = 0.0007)
+      - Wilcoxon Signed-Rank Test: W = 68516.5, p-value = 1.0870e-03 (p = 0.0011)
+
+--- Comparison: Unified POLQUAD vs Iterative Naive ---
+Sample size (n): 747
+
+  [1] SUCCESS RATE / CONVERGENCE (Paired Binary Outcomes)
+      - Unified Polquad: 69.34% (518/747)
+      - Naive: 68.94% (515/747)
+      - 2x2 Contingency Table (Discordant & Concordant Pairs):
+          * Both Converged (Pass, Pass): 461
+          * Pass A, Fail B (Discordant b): 57
+          * Fail A, Pass B (Discordant c): 54
+          * Both Failed (Fail, Fail):     175
+      - Paired Difference (A - B): +0.40 percentage points
+      - McNemar's Exact Test p-value: 8.4955e-01 (p = 0.8496)
+      - McNemar with Continuity Correction: chi2 = 0.0360, p = 8.4944e-01
+      - 95% CI (Wald Paired): [-2.36%, +3.17%] (SE = 1.41%)
+      - 95% CI (Wald with Continuity Correction): [-2.50%, +3.30%]
+      - 95% CI (Newcombe / Wilson Score Paired): [-2.36%, +3.17%]
+
+  [2] AVERAGE BIAS REDUCTION (Paired Continuous Outcomes)
+      - Unified Polquad Mean: 64.25%
+      - Naive Mean: 63.13%
+      - Paired Mean Difference (Delta = A - B): +1.12%
+      - Standard Error (SE): 0.84%  (SD of differences = 22.83%)
+      - 95% CI (Paired t-interval, df=746): [-0.52%, +2.76%]
+      - Paired t-test: t = 1.3374, df = 746, p-value = 1.8151e-01 (p = 0.1815)
+      - Wilcoxon Signed-Rank Test: W = 57038.5, p-value = 2.2414e-01 (p = 0.2241)
