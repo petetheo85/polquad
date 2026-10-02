@@ -1,10 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import numpy as np
 import json
-import statistics
-from matplotlib.lines import Line2D
-import sys
 from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent
 
@@ -14,8 +10,7 @@ from polquad.utils.formatter import (
     print_main_header,
     print_statement_header,
     print_framework_header,
-    print_error,
-    print_summary
+    print_error
 )
 from polquad.utils.gemini_client import GeminiClient
 from polquad.utils.openai_client import ChatGPTClient

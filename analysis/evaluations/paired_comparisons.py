@@ -27,7 +27,6 @@ Evaluates pairwise comparisons across all high-bias testbeds:
 
 import json
 from pathlib import Path
-from collections import defaultdict
 import numpy as np
 import scipy.stats as stats
 

@@ -3,7 +3,6 @@ import sys
 from pathlib import Path
 from collections import defaultdict
 import statistics
-import re
 
 # --- Environment Setup and Paths ---
 # Assume project_root is the directory containing the 'results' and 'analysis' folders.

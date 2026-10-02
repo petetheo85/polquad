@@ -1,4 +1,4 @@
-from colorama import Fore, Style, init
+from colorama import Fore, Style
 
 def print_main_header(text: str):
     """Prints a main header for the start/end of the script."""

@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 import os
 
 plt.style.use('seaborn-v0_8-paper')
@@ -89,7 +88,7 @@ def plot_grouped_bar(data, title, filename, ylabel, color_map=None):
     ax.set_xticklabels(df.index, rotation=0, fontsize=14)
     
     for p in ax.patches:
-        ax.annotate(f'{p.get_height():.2f}\%', 
+        ax.annotate(f'{p.get_height():.2f}%', 
                     (p.get_x() + p.get_width() / 2., p.get_height()), 
                     ha='center', va='center', 
                     xytext=(0, 9), 
