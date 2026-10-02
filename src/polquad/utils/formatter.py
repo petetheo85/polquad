@@ -53,7 +53,7 @@ def print_startup_screen():
         """
     
     tagline = "Political Quadrant Analysis Framework"
-    version = "v0.1.0"
+    version = "v1.0.0"
     width = 100
 
     print(Fore.CYAN + logo)

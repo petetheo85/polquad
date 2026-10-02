@@ -4,6 +4,21 @@
 [![Tests](https://github.com/petetheo85/polquad/actions/workflows/test.yml/badge.svg)](https://github.com/petetheo85/polquad/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
+```text
+ ███████████     ███████    █████          ██████    █████  █████   █████████   ██████████  
+▒▒███▒▒▒▒▒███  ███▒▒▒▒▒███ ▒▒███         ███▒▒▒▒███ ▒▒███  ▒▒███   ███▒▒▒▒▒███ ▒▒███▒▒▒▒███ 
+ ▒███    ▒███ ███     ▒▒███ ▒███        ███    ▒▒███ ▒███   ▒███  ▒███    ▒███  ▒███   ▒▒███
+ ▒██████████ ▒███      ▒███ ▒███       ▒███     ▒███ ▒███   ▒███  ▒███████████  ▒███    ▒███
+ ▒███▒▒▒▒▒▒  ▒███      ▒███ ▒███       ▒███   ██▒███ ▒███   ▒███  ▒███▒▒▒▒▒███  ▒███    ▒███
+ ▒███        ▒▒███     ███  ▒███      █▒▒███ ▒▒████  ▒███   ▒███  ▒███    ▒███  ▒███    ███ 
+ █████        ▒▒▒███████▒   ███████████ ▒▒▒██████▒██ ▒▒████████   █████   █████ ██████████  
+▒▒▒▒▒           ▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒ ▒▒   ▒▒▒▒▒▒▒▒   ▒▒▒▒▒   ▒▒▒▒▒ ▒▒▒▒▒▒▒▒▒▒   
+
+                               Political Quadrant Analysis Framework
+                                               v1.0.0
+====================================================================================================
+```
+
 This repository contains the code and evaluation datasets for the paper:
 > **"Computational Processing of Political Bias Using AI Agents"**  
 > Peter Theodoracopoulos, Manoj P. Vijayakumar, and Vijay K. Madisetti (Georgia Institute of Technology)  
