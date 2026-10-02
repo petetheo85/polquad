@@ -1,5 +1,10 @@
 import os
 import json
+import warnings
+
+# Suppress Pydantic warning from google-genai on Python 3.14
+warnings.filterwarnings("ignore", message=".*is not a Python type.*")
+
 from google import genai
 from google.genai import types
 from typing import Optional, Dict
@@ -99,5 +104,29 @@ class GeminiClient:
             import traceback
             traceback.print_exc()
             print(f"\n[GeminiClient] --- CRITICAL API ERROR (JSON) ---")
+            print(f"The actual underlying exception was: {e}")
+            raise
+
+    @retry_with_backoff(retries=3, base_delay=5)
+    def embed_text(
+            self,
+            text: str,
+            model: str = "gemini-embedding-001"
+    ) -> list[float]:
+        """Generates a text embedding vector using Gemini."""
+        try:
+            response = self.client.models.embed_content(
+                model=model,
+                contents=text,
+            )
+            if hasattr(response, 'embedding') and hasattr(response.embedding, 'values'):
+                return list(response.embedding.values)
+            elif hasattr(response, 'embeddings') and len(response.embeddings) > 0:
+                return list(response.embeddings[0].values)
+            raise ValueError(f"[GeminiClient] No embedding values returned.")
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            print(f"\n[GeminiClient] --- CRITICAL EMBEDDING ERROR ---")
             print(f"The actual underlying exception was: {e}")
             raise

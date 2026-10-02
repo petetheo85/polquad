@@ -1,0 +1,54 @@
+======================================================================================
+         INDEPENDENT BLINDED ASSESSMENT OF NEUTRALITY & MEANING PRESERVATION          
+       Testing Semantic Fidelity and Neutrality of Framework Rewrites (n = 100)       
+======================================================================================
+
+### Table 1: Comparative Evaluation Metrics (Mean ± Standard Error)
+
+| Metric                           | Iterative Naive  | Unified POLQUAD    | Full POLQUAD     |
+|----------------------------------|------------------|--------------------|------------------|
+| Meaning Preservation (1-5)       | 4.035 ± 0.082   | 3.980 ± 0.088   | 3.510 ± 0.085   |
+| Perceived Neutrality (1-5)       | 4.150 ± 0.064   | 4.200 ± 0.059   | 4.035 ± 0.082   |
+| Gemini Embedding Cosine Sim      | 0.799 ± 0.008   | 0.790 ± 0.008   | 0.751 ± 0.008   |
+| Lexical ROUGE-L F1               | 0.226 ± 0.015   | 0.223 ± 0.015   | 0.177 ± 0.012   |
+| Token Jaccard Overlap            | 0.168 ± 0.012   | 0.163 ± 0.013   | 0.133 ± 0.011   |
+
+======================================================================================
+### Table 2: Paired Statistical Significance Tests (Full POLQUAD vs. Baselines)
+======================================================================================
+
+
+--- Comparison: Full POLQUAD vs Unified POLQUAD ---
+  • Meaning Preservation (1-5)      : Diff = -0.470 (SE = 0.113), Paired t = -4.151 (p = 7.0128e-05), Wilcoxon p = 1.3614e-04
+  • Perceived Neutrality (1-5)      : Diff = -0.165 (SE = 0.088), Paired t = -1.877 (p = 6.3505e-02), Wilcoxon p = 6.3005e-02
+  • Gemini Embedding Cosine Sim     : Diff = -0.039 (SE = 0.007), Paired t = -5.550 (p = 2.3958e-07), Wilcoxon p = 1.0640e-06
+  • Lexical ROUGE-L F1              : Diff = -0.046 (SE = 0.011), Paired t = -4.326 (p = 3.6306e-05), Wilcoxon p = 2.5967e-05
+  • Token Jaccard Overlap           : Diff = -0.030 (SE = 0.007), Paired t = -4.187 (p = 6.1430e-05), Wilcoxon p = 2.9894e-04
+
+--- Comparison: Full POLQUAD vs Iterative Naive ---
+  • Meaning Preservation (1-5)      : Diff = -0.525 (SE = 0.120), Paired t = -4.388 (p = 2.8577e-05), Wilcoxon p = 2.2673e-05
+  • Perceived Neutrality (1-5)      : Diff = -0.115 (SE = 0.105), Paired t = -1.096 (p = 2.7559e-01), Wilcoxon p = 2.9752e-01
+  • Gemini Embedding Cosine Sim     : Diff = -0.048 (SE = 0.007), Paired t = -6.730 (p = 1.1157e-09), Wilcoxon p = 7.0223e-09
+  • Lexical ROUGE-L F1              : Diff = -0.049 (SE = 0.010), Paired t = -4.998 (p = 2.5006e-06), Wilcoxon p = 3.8550e-06
+  • Token Jaccard Overlap           : Diff = -0.035 (SE = 0.007), Paired t = -5.001 (p = 2.4732e-06), Wilcoxon p = 1.2393e-05
+
+======================================================================================
+### Table 3: Correlation Analysis (Movement Toward Center vs. Neutrality & Fidelity)
+Testing whether coordinate movement toward (0,0) represents a genuine, faithful rewrite
+======================================================================================
+
+
+Framework: Iterative Naive
+  • Bias Reduction vs Perceived Neutrality    : Pearson r = +0.212 (p = 3.3985e-02) | Spearman rho = +0.153 (p = 1.2910e-01)
+  • Bias Reduction vs Meaning Preservation    : Pearson r = -0.375 (p = 1.1937e-04) | Spearman rho = -0.399 (p = 3.9193e-05)
+  • Bias Reduction vs Embedding Cosine Sim    : Pearson r = -0.489 (p = 2.4410e-07) | Spearman rho = -0.431 (p = 7.5853e-06)
+
+Framework: Unified POLQUAD
+  • Bias Reduction vs Perceived Neutrality    : Pearson r = +0.278 (p = 5.1632e-03) | Spearman rho = +0.226 (p = 2.3890e-02)
+  • Bias Reduction vs Meaning Preservation    : Pearson r = -0.370 (p = 1.4945e-04) | Spearman rho = -0.352 (p = 3.3567e-04)
+  • Bias Reduction vs Embedding Cosine Sim    : Pearson r = -0.437 (p = 5.3916e-06) | Spearman rho = -0.368 (p = 1.6401e-04)
+
+Framework: Full POLQUAD
+  • Bias Reduction vs Perceived Neutrality    : Pearson r = +0.181 (p = 7.1178e-02) | Spearman rho = +0.224 (p = 2.4943e-02)
+  • Bias Reduction vs Meaning Preservation    : Pearson r = -0.233 (p = 1.9622e-02) | Spearman rho = -0.244 (p = 1.4330e-02)
+  • Bias Reduction vs Embedding Cosine Sim    : Pearson r = -0.440 (p = 4.6513e-06) | Spearman rho = -0.423 (p = 1.1504e-05)
